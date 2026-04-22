@@ -1555,11 +1555,18 @@ h1, h2, h3, h4, h5 {
     border-top: 1px solid var(--line);
   }
 
-  .hero { padding: 100px 0 60px; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-right { max-width: 440px; margin: 0 auto; }
+  /* Hero: give enough top clearance for the fixed nav */
+  .hero { padding: 120px 0 70px; }
+  .hero h1 { font-size: clamp(2.1rem, 7vw, 3rem); }
+  .hero-sub { font-size: 1.05rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .hero-right { max-width: 440px; margin: 0 auto; width: 100%; }
   .float-badge.top { left: 0; top: -15px; }
   .float-badge.bottom { right: 0; bottom: -15px; }
+
+  /* Rate card: scale the big amount down */
+  .rate-display .amount { font-size: 2.8rem; }
+  .rate-display .prefix { font-size: 1.3rem; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 12px; }
   .stat { padding: 10px; }
@@ -1584,8 +1591,9 @@ h1, h2, h3, h4, h5 {
   .sticky-cta .text { font-size: 0.8rem; }
 }
 @media (max-width: 560px) {
-  /* On small mobile, there isn't room for the marketing copy. Drop the text,
-     keep the pill compact, make the Apply button the primary element. */
+  .container { padding: 0 16px; }
+
+  /* Sticky CTA: drop text on small screens */
   .sticky-cta {
     padding: 10px 10px 10px 20px;
     gap: 10px;
@@ -1593,23 +1601,72 @@ h1, h2, h3, h4, h5 {
     max-width: calc(100vw - 24px);
   }
   .sticky-cta .text { display: none; }
-  .sticky-cta a {
-    padding: 11px 22px;
-    font-size: 0.92rem;
-  }
-  .sticky-cta .close {
-    width: 32px;
-    height: 32px;
-    font-size: 1.1rem;
-  }
+  .sticky-cta a { padding: 11px 22px; font-size: 0.92rem; }
+  .sticky-cta .close { width: 32px; height: 32px; font-size: 1.1rem; }
 
+  /* Hero: tighten further on phones */
+  .hero { padding: 100px 0 54px; }
+  .hero h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); margin-bottom: 18px; }
+  .hero-sub { font-size: 0.98rem; margin-bottom: 28px; }
+  .hero-trust { gap: 12px 16px; }
+  .hero-trust-item { font-size: 0.78rem; }
+
+  /* Hero CTAs stack full-width */
+  .hero-ctas { flex-direction: column; width: 100%; gap: 10px; margin-bottom: 32px; }
+  .hero-ctas .btn { width: 100%; }
+
+  /* Rate card scales further */
+  .rate-card { padding: 24px 22px; }
+  .rate-display .amount { font-size: 2.4rem; }
+  .rate-display .prefix { font-size: 1.15rem; }
+  .rate-display .per { font-size: 0.85rem; }
+  .rate-meta { gap: 12px; }
+  .rate-meta .item .v { font-size: 1.1rem; }
+
+  /* Section grids collapse to 1 column */
   .prod-grid, .sol-grid, .process-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+
+  /* Calculator */
   .calc-widget { padding: 24px 20px; }
+  .calc-left h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+  /* CTA block */
   .cta-right { padding: 24px; }
-  .hero-ctas { flex-direction: column; width: 100%; }
-  .hero-ctas .btn { width: 100%; }
-  .rate-card { padding: 24px; }
+  .cta-left h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+  /* Section heads scale down */
+  .section-head h2, .intro h2, .stats .num { }
+  .section { padding: 60px 0; }
+  .calc-section { padding: 60px 0; }
+
+  /* Stats: 2 columns but tighter */
+  .stats-grid { gap: 28px 10px; }
+  .stat .num { font-size: 2.2rem; }
+  .stat .label { font-size: 0.88rem; }
+  .stat .desc { font-size: 0.8rem; }
+
+  /* Testimonials */
+  .test-slide { padding: 26px 22px; }
+  .test-slide blockquote { font-size: 1rem; }
+
+  /* Logo text: tighten on small */
+  .logo-text .name { font-size: 1.05rem; }
+  .logo-text .tag { font-size: 0.6rem; letter-spacing: 0.1em; }
+  .logo-mark { height: 42px; }
+}
+@media (max-width: 420px) {
+  /* Very small phones (iPhone SE, etc.) — final tightening */
+  .hero { padding: 94px 0 48px; }
+  .hero h1 { font-size: 1.75rem; }
+  .rate-display .amount { font-size: 2.1rem; }
+  .rate-card { padding: 20px 18px; }
+  .float-badge { padding: 10px 14px; }
+  .float-badge .text strong { font-size: 0.88rem; }
+  .float-badge .text span { font-size: 0.72rem; }
+  .float-badge .icon { width: 32px; height: 32px; }
+  .stat .num { font-size: 2rem; }
+  .logo-text .tag { display: none; }
 }
 </style>
 </head>
