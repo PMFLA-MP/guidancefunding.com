@@ -1524,6 +1524,10 @@ h1, h2, h3, h4, h5 {
   transform: translateY(0);
 }
 
+/* Mobile nav default: hidden at all widths. Revealed inside the 960px media query below. */
+.mobile-nav { display: none; }
+.nav-toggle { display: none; }
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1539,6 +1543,7 @@ h1, h2, h3, h4, h5 {
   .nav-toggle { display: flex; }
 
   .mobile-nav {
+    display: block;
     position: fixed;
     top: 0;
     right: -100%;
