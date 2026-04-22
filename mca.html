@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Merchant Cash Advance — Guidance Funding</title>
+<meta name="description" content="Quick access to working capital based on your future credit card sales. Factor rates from 15%, funding from $2K to $2M, approved in hours and funded in as little as one business day." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+/* ============================================================
+   MCA PAGE — page-specific styles
+   ============================================================ */
+
+/* Overview block with offset card */
+.overview {
+  padding: 100px 0;
+  background: white;
+}
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.overview h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin: 18px 0 24px;
+}
+.overview p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--body);
+  margin-bottom: 18px;
+}
+.overview-card {
+  background: linear-gradient(160deg, var(--teal-soft) 0%, white 100%);
+  border: 1px solid var(--teal-light);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.overview-card::before {
+  content: "";
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(18,148,138,0.12), transparent 70%);
+}
+.overview-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: var(--teal-dark);
+  position: relative;
+  z-index: 1;
+}
+.overview-card ul { position: relative; z-index: 1; }
+.overview-card li {
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--teal-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.95rem;
+}
+.overview-card li:last-child { border-bottom: none; }
+.overview-card li .lbl { color: var(--body); font-weight: 500; }
+.overview-card li .val {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--teal-dark);
+  font-size: 1.1rem;
+}
+
+/* Quick-facts strip */
+.facts {
+  background: var(--bg-alt);
+  padding: 70px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.facts-head { text-align: center; margin-bottom: 50px; max-width: 720px; margin-left: auto; margin-right: auto; }
+.facts-head h2 {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin: 14px 0 12px;
+}
+.facts-head p { color: var(--body); font-size: 1rem; }
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.fact {
+  background: white;
+  padding: 28px 28px 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.fact:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--teal-light);
+}
+.fact .fact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.fact .fact-icon svg { width: 22px; height: 22px; }
+.fact h4 {
+  font-size: 1.02rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.fact p { font-size: 0.9rem; color: var(--body); line-height: 1.55; }
+
+/* Rates-based-on grid */
+.rates-section { padding: 100px 0; background: white; }
+.rates-head { text-align: center; margin-bottom: 60px; }
+.rates-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 14px 0 14px; }
+.rates-head p { color: var(--body); max-width: 640px; margin: 0 auto; font-size: 1rem; }
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.rate-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 24px 22px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.rate-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.rate-card .num {
+  font-family: var(--display);
+  font-weight: 800;
+  color: var(--teal);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.rate-card h4 {
+  font-size: 0.98rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.rate-card p { font-size: 0.85rem; color: var(--body); line-height: 1.55; }
+
+/* Documents + Questions two-column */
+.split-section {
+  padding: 100px 0;
+  background: var(--bg-alt);
+}
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.split-card {
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.split-card .eyebrow { margin-bottom: 14px; }
+.split-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.doc-list, .q-list { margin-top: 12px; }
+.doc-list li, .q-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.98rem;
+  color: var(--ink);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+.doc-list li:last-child, .q-list li:last-child { border-bottom: none; }
+.doc-list li::before {
+  content: "✓";
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 1rem;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: var(--teal-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.q-list { counter-reset: qnum; }
+.q-list li { counter-increment: qnum; }
+.q-list li::before {
+  content: counter(qnum);
+  color: var(--amber);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+/* Good to know callouts */
+.gtk-section { padding: 100px 0; background: white; }
+.gtk-head { text-align: center; margin-bottom: 50px; }
+.gtk-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 14px 0 12px; }
+.gtk-head p { color: var(--body); max-width: 640px; margin: 0 auto; }
+.gtk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.gtk-card {
+  background: linear-gradient(160deg, var(--teal-soft), white 80%);
+  border: 1px solid var(--teal-light);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gtk-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.gtk-card .tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber-dark);
+  background: rgba(245, 166, 35, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.gtk-card h4 { font-size: 1.05rem; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.gtk-card p { font-size: 0.92rem; color: var(--body); line-height: 1.6; }
+
+/* FAQ */
+.faq-section { padding: 100px 0; background: var(--bg-alt); }
+.faq-head { text-align: center; margin-bottom: 48px; }
+.faq-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 14px 0; }
+.faq-list { max-width: 860px; margin: 0 auto; }
+.faq-item {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.faq-item[open] {
+  border-color: var(--teal-light);
+  box-shadow: var(--shadow-sm);
+}
+.faq-item summary {
+  padding: 20px 28px;
+  cursor: pointer;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--display);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .plus {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.faq-item[open] .plus {
+  transform: rotate(45deg);
+  background: var(--teal);
+  color: white;
+}
+.faq-item .answer {
+  padding: 0 28px 24px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+/* Final CTA block */
+.final-cta { padding: 90px 0; background: white; }
+.final-cta-inner {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(245, 166, 35, 0.15), transparent 55%),
+    linear-gradient(160deg, var(--teal-deep) 0%, var(--teal-dark) 60%, var(--teal) 100%);
+  color: white;
+  padding: 70px 60px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 50px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta-inner::before {
+  content: "";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.07), transparent 70%);
+}
+.final-cta-inner h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: white;
+  margin-bottom: 16px;
+}
+.final-cta-inner h2 .accent { color: var(--amber); font-style: italic; }
+.final-cta-inner p {
+  color: rgba(255,255,255,0.82);
+  font-size: 1.02rem;
+  max-width: 440px;
+  line-height: 1.7;
+}
+.final-cta-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.final-cta-phone {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.final-cta-phone:hover { border-color: var(--amber); }
+.final-cta-phone svg { width: 22px; height: 22px; color: var(--amber); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .rates-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 960px) {
+  .overview-grid { grid-template-columns: 1fr; gap: 44px; }
+  .facts-grid { grid-template-columns: repeat(2, 1fr); }
+  .rates-grid { grid-template-columns: repeat(2, 1fr); }
+  .split-grid { grid-template-columns: 1fr; gap: 28px; }
+  .gtk-grid { grid-template-columns: repeat(2, 1fr); }
+  .final-cta-inner { grid-template-columns: 1fr; padding: 48px 32px; gap: 28px; }
+}
+@media (max-width: 560px) {
+  .overview, .facts, .rates-section, .split-section, .gtk-section, .faq-section, .final-cta { padding: 60px 0; }
+  .facts-grid, .rates-grid, .gtk-grid { grid-template-columns: 1fr; }
+  .split-card { padding: 28px 24px; }
+  .overview-card { padding: 30px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+        <div class="logo-text">
+          <span class="name">Guidance Funding</span>
+          <span class="tag">Business Capital &amp; Solutions</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-drop">
+          <span>Financing</span>
+          <div class="drop">
+            <div class="drop-col">
+              <h4>Premium Business Financing</h4>
+              <a href="mca.html" class="current">Merchant Cash Advance</a>
+              <a href="index.html#loc">Line of Credit</a>
+              <a href="index.html#term">Term Loan</a>
+              <a href="index.html#equipment">Equipment Financing</a>
+            </div>
+            <div class="drop-col">
+              <h4>More Options</h4>
+              <a href="index.html#mortgage">Mortgage Financing</a>
+              <a href="index.html#po">P.O. Financing</a>
+              <a href="index.html#sba">SBA Loan</a>
+              <a href="index.html#factoring">Factoring</a>
+            </div>
+          </div>
+        </li>
+        <li class="has-drop">
+          <span>Solutions</span>
+          <div class="drop">
+            <div class="drop-col">
+              <h4>Small Business Solutions</h4>
+              <a href="index.html#credit-services">Credit Services</a>
+              <a href="index.html#ccp">Credit Card Processing</a>
+              <a href="index.html#bookkeeping">Bookkeeping</a>
+            </div>
+            <div class="drop-col">
+              <h4>More</h4>
+              <a href="index.html#seo">SEO Services</a>
+              <a href="index.html#payroll">Payroll &amp; HR</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="tel:2135227765" class="phone-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="apply.html" class="btn btn-primary">Apply Now <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- Mobile drawer -->
+<aside class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <div class="group">
+    <h4>Financing</h4>
+    <a href="mca.html">Merchant Cash Advance</a>
+    <a href="index.html#loc">Line of Credit</a>
+    <a href="index.html#term">Term Loan</a>
+    <a href="index.html#equipment">Equipment Financing</a>
+    <a href="index.html#mortgage">Mortgage Financing</a>
+    <a href="index.html#po">P.O. Financing</a>
+    <a href="index.html#sba">SBA Loan</a>
+    <a href="index.html#factoring">Factoring</a>
+  </div>
+  <div class="group">
+    <h4>Solutions</h4>
+    <a href="index.html#credit-services">Credit Services</a>
+    <a href="index.html#ccp">Credit Card Processing</a>
+    <a href="index.html#bookkeeping">Bookkeeping</a>
+    <a href="index.html#seo">SEO Services</a>
+    <a href="index.html#payroll">Payroll &amp; HR</a>
+  </div>
+  <a href="index.html#calculator">Calculator</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-cta">
+    <a href="tel:2135227765" class="btn btn-ghost" style="width:100%; margin-bottom:10px;">(213) 522-7765</a>
+    <a href="apply.html" class="btn btn-primary" style="width:100%;">Apply Now</a>
+  </div>
+</aside>
+
+<!-- ========== HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Financing</span>
+      <span class="sep">/</span>
+      <span>Merchant Cash Advance</span>
+    </div>
+    <div class="eyebrow eyebrow-light">Premium Business Financing</div>
+    <h1>Merchant Cash <span class="accent">Advance</span>.</h1>
+    <p class="lede">
+      Quick access to working capital based on your future credit card sales. Fast approval, flexible repayment tied to your daily revenue, and funding in as little as one business day.
+    </p>
+    <div class="page-hero-ctas">
+      <a href="apply.html" class="btn btn-amber">
+        Apply Now
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:2135227765" class="btn btn-outline">Talk to a specialist</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== OVERVIEW ========== -->
+<section class="overview">
+  <div class="container">
+    <div class="overview-grid">
+      <div class="reveal">
+        <div class="eyebrow">What it is</div>
+        <h2>Borrow against <span class="accent">future earnings</span> &mdash; get that capital today.</h2>
+        <p>
+          A merchant cash advance isn't a loan in the traditional sense. It's a purchase of a portion of your future receivables at a discount. We advance you capital now, and you repay through a small, predictable slice of your daily revenue until the agreed amount is satisfied.
+        </p>
+        <p>
+          That structure is what makes MCAs a great fit for businesses with strong sales but imperfect credit, short operating history, or unpredictable cash flow &mdash; the ones traditional lenders pass over most often.
+        </p>
+      </div>
+
+      <div class="overview-card reveal">
+        <h3>At a glance</h3>
+        <ul>
+          <li><span class="lbl">Funding amount</span><span class="val">$2K &ndash; $2M</span></li>
+          <li><span class="lbl">Factor rate</span><span class="val">15% &ndash; 49%</span></li>
+          <li><span class="lbl">Term</span><span class="val">30 days &ndash; 24 mo.</span></li>
+          <li><span class="lbl">Speed to fund</span><span class="val">As fast as 1 day</span></li>
+          <li><span class="lbl">Repayment</span><span class="val">ACH or holdback</span></li>
+          <li><span class="lbl">Min. monthly rev.</span><span class="val">$10,000</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FACTS GRID ========== -->
+<section class="facts">
+  <div class="container">
+    <div class="facts-head reveal">
+      <div class="eyebrow" style="justify-content:center;">How it works</div>
+      <h2>Terms designed around <span class="accent">your revenue</span>.</h2>
+      <p>An MCA adapts to the shape of your business &mdash; repayment scales with sales, not against a fixed calendar.</p>
+    </div>
+
+    <div class="facts-grid">
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4>Fixed factor rate</h4>
+        <p>Factor rate range: 15% &ndash; 49%. The advance is a fixed-fee structure, not an APR, so you know the total repayment from day one.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h4>Flexible payment frequency</h4>
+        <p>Pay back daily, weekly, bi-weekly, or monthly &mdash; whatever matches how your revenue actually comes in.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h4>Two repayment options</h4>
+        <p>ACH debits pulled from your business bank, or holdbacks taken as a percentage of each credit card batch &mdash; your call.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>Fast funding</h4>
+        <p>Approved in hours, funded in as little as one business day once the paperwork is in. No waiting weeks for a decision.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+        </div>
+        <h4>Scales with growth</h4>
+        <p>Once 50% of your advance is paid down, you're eligible for additional funding &mdash; no reapplying from scratch.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9"/><path d="M21 3v6h-6"/><path d="M21 3l-9 9"/></svg>
+        </div>
+        <h4>Consolidation available</h4>
+        <p>Already have advances out with other funders? We can consolidate existing MCAs to lower payments and free up daily cash flow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RATES BASED ON ========== -->
+<section class="rates-section">
+  <div class="container">
+    <div class="rates-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Pricing factors</div>
+      <h2>Rates are <span class="accent">based on</span>.</h2>
+      <p>Your factor rate and terms are calibrated to the profile of your business. Stronger on any of these = better pricing.</p>
+    </div>
+
+    <div class="rates-grid">
+      <div class="rate-card reveal">
+        <div class="num">01</div>
+        <h4>Average monthly revenue</h4>
+        <p>Higher monthly revenue typically unlocks better rates and larger advance amounts.</p>
+      </div>
+      <div class="rate-card reveal">
+        <div class="num">02</div>
+        <h4>Time in business</h4>
+        <p>Longer operating history signals stability &mdash; established businesses receive more favorable terms.</p>
+      </div>
+      <div class="rate-card reveal">
+        <div class="num">03</div>
+        <h4>Credit profile</h4>
+        <p>Personal and business credit scores influence pricing. We work with imperfect credit &mdash; it just changes the rate.</p>
+      </div>
+      <div class="rate-card reveal">
+        <div class="num">04</div>
+        <h4>Financial health</h4>
+        <p>Consistent deposits, low negative-day counts, and profitability all earn better offers.</p>
+      </div>
+      <div class="rate-card reveal">
+        <div class="num">05</div>
+        <h4>Industry</h4>
+        <p>Certain industries are lower-risk and receive preferential pricing. We price every deal individually.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DOCUMENTS + QUESTIONS ========== -->
+<section class="split-section">
+  <div class="container">
+    <div class="split-grid">
+      <div class="split-card reveal">
+        <div class="eyebrow">To apply</div>
+        <h3>Required <span class="accent">documents</span>.</h3>
+        <ul class="doc-list">
+          <li>One-page data form (our short application)</li>
+          <li>3&ndash;6 months of business bank statements</li>
+          <li>Driver's license</li>
+          <li>Voided business check</li>
+          <li>Additional stipulations may be requested, such as proof of ownership, P&amp;L, tax returns, or A/R reports</li>
+        </ul>
+      </div>
+
+      <div class="split-card reveal">
+        <div class="eyebrow">Before you apply</div>
+        <h3>Ask <span class="accent">yourself</span>.</h3>
+        <ul class="q-list">
+          <li>Do you have any existing debt on your balance sheet? If yes, what are the balances and who are they owed to?</li>
+          <li>How do you plan on using the funding &mdash; growth, inventory, payroll, equipment, or bridging a gap?</li>
+          <li>How quickly do you need the funds?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GOOD TO KNOW ========== -->
+<section class="gtk-section">
+  <div class="container">
+    <div class="gtk-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Good to know</div>
+      <h2>Things most people <span class="accent">don't realize</span>.</h2>
+      <p>The MCA product is more flexible than its reputation. A few points worth flagging before you apply.</p>
+    </div>
+
+    <div class="gtk-grid">
+      <div class="gtk-card reveal">
+        <span class="tag">Credit-flexible</span>
+        <h4>Imperfect credit is workable</h4>
+        <p>Low score, negative history, or less than a year in business? There are still MCA options on the table. The rate just reflects the profile.</p>
+      </div>
+      <div class="gtk-card reveal">
+        <span class="tag">Consolidation</span>
+        <h4>We can consolidate existing advances</h4>
+        <p>Stacked with multiple funders? We can roll existing MCAs into one payment &mdash; usually lowering the daily debit and freeing up cash flow.</p>
+      </div>
+      <div class="gtk-card reveal">
+        <span class="tag">Speed</span>
+        <h4>Minimal paperwork, same-day funding</h4>
+        <p>No tax returns required in most cases. Approvals often come back within hours, with same-day or next-day funding on clean files.</p>
+      </div>
+      <div class="gtk-card reveal">
+        <span class="tag">Grow with us</span>
+        <h4>Renewal at 50% paid</h4>
+        <p>Once your balance is 50% paid down, you qualify for additional funding without starting the full application over from scratch.</p>
+      </div>
+      <div class="gtk-card reveal">
+        <span class="tag">Eligibility</span>
+        <h4>Fit for most small businesses</h4>
+        <p>A good option for businesses grossing $10,000+ per month in revenue and in operation for 6+ months. Most industries welcome.</p>
+      </div>
+      <div class="gtk-card reveal">
+        <span class="tag">Not an APR</span>
+        <h4>Factor rate, not interest</h4>
+        <p>Factor rate is a fixed multiplier on the advance, not an annualized interest rate. You always know the total payback from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq-section">
+  <div class="container">
+    <div class="faq-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Frequently asked</div>
+      <h2>MCA <span class="accent">questions</span>.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>What's the difference between an MCA and a traditional loan? <span class="plus">+</span></summary>
+        <div class="answer">A loan is a debt instrument with an APR, fixed payments, and a defined term. An MCA is a purchase of future receivables &mdash; we advance capital today in exchange for a slice of tomorrow's sales. Repayment scales with revenue, there's no compounding interest, and the total payback amount is fixed upfront by the factor rate.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How is a factor rate different from an interest rate? <span class="plus">+</span></summary>
+        <div class="answer">A factor rate is a flat multiplier. A 1.30 factor on a $100,000 advance means you repay $130,000 total &mdash; regardless of how long it takes. An APR compounds over time; a factor rate doesn't. Paying faster doesn't reduce the payback; paying slower doesn't increase it.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Can I qualify with bad credit? <span class="plus">+</span></summary>
+        <div class="answer">Yes. Credit is a pricing factor, not a hard gate. We've funded businesses with FICOs in the 500s. What matters more is revenue consistency, time in business, and bank account health. Low credit usually means a higher factor rate or a shorter initial term, not an automatic decline.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Can I get an MCA if I already have one with another funder? <span class="plus">+</span></summary>
+        <div class="answer">In most cases, yes. We can either stack a second position or consolidate your existing advance into a new one with lower combined payments. The consolidation route typically improves daily cash flow because the new payment replaces multiple older ones.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How fast is funding in practice? <span class="plus">+</span></summary>
+        <div class="answer">On clean files, we often approve within hours of receiving statements and the application, with funding the same day or next business day. More complex deals (larger amounts, consolidation, multiple bank accounts) take a bit longer &mdash; usually 2&ndash;3 business days end to end.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Are there prepayment penalties? <span class="plus">+</span></summary>
+        <div class="answer">Because the payback amount is fixed by the factor rate, paying early doesn't save you interest (there isn't any to save). Some funders offer a discount for early payoff &mdash; it depends on the specific program. We'll always tell you what your early-payoff number looks like before you sign.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Will an MCA show on my personal or business credit report? <span class="plus">+</span></summary>
+        <div class="answer">MCAs generally aren't reported to personal or business credit bureaus, so they don't build (or hurt) your credit directly. We pull credit during underwriting, but the advance itself isn't a tradeline that shows up on a credit report.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-inner reveal">
+      <div>
+        <div class="eyebrow eyebrow-light">Ready to move</div>
+        <h2>Talk to a specialist about <span class="accent">your MCA</span>.</h2>
+        <p>Send us 3 months of business bank statements and a one-page application. Approval in hours, funding as soon as tomorrow.</p>
+      </div>
+      <div class="final-cta-right">
+        <a href="apply.html" class="btn btn-amber">
+          Apply Now
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:2135227765" class="final-cta-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="index.html" class="logo">
+          <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+          <div class="logo-text">
+            <span class="name">Guidance Funding</span>
+            <span class="tag">Business Capital &amp; Solutions</span>
+          </div>
+        </a>
+        <p>Fast, customized financing built to support your business at every step. Call us today for a free, no-strings-attached consultation.</p>
+        <a href="tel:2135227765" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="mailto:admin@guidancefunding.com" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          admin@guidancefunding.com
+        </a>
+        <a href="#" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Los Angeles, CA
+        </a>
+      </div>
+      <div class="footer-col">
+        <h5>Financing</h5>
+        <ul>
+          <li><a href="mca.html">Merchant Cash Advance</a></li>
+          <li><a href="index.html#loc">Line of Credit</a></li>
+          <li><a href="index.html#term">Term Loan</a></li>
+          <li><a href="index.html#equipment">Equipment Financing</a></li>
+          <li><a href="index.html#sba">SBA Loan</a></li>
+          <li><a href="index.html#factoring">Factoring</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="index.html#credit-services">Credit Services</a></li>
+          <li><a href="index.html#ccp">Credit Card Processing</a></li>
+          <li><a href="index.html#bookkeeping">Bookkeeping</a></li>
+          <li><a href="index.html#seo">SEO Services</a></li>
+          <li><a href="index.html#payroll">Payroll &amp; HR</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Guidance Funding © 2026 — All rights reserved</div>
+      <div>California Lenders License #60DBO 67237</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const navWrap = document.getElementById('navWrap');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) navWrap.classList.add('scrolled');
+  else navWrap.classList.remove('scrolled');
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const mobileNav = document.getElementById('mobileNav');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+});
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    mobileNav.classList.remove('open');
+  });
+});
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

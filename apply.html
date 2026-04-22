@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apply for Funding — Guidance Funding</title>
+<meta name="description" content="Complete your funding application in 4 quick steps. Fast approval, funding in as little as one business day." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+/* The apply page hero is a bit shorter since the form is the main event */
+.page-hero.apply-hero { padding: 150px 0 70px; }
+.apply-hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
+
+/* Apply form wrapper */
+.apply-section {
+  padding: 0 0 80px;
+  background: var(--bg-alt);
+}
+.apply-wrap {
+  margin-top: -40px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.apply-iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  /* Starts at a generous height — auto-resizes via postMessage from the form. */
+  height: 2400px;
+  transition: height 0.25s ease;
+  background: white;
+}
+
+/* Loading shim shown only until the iframe reports its real height */
+.apply-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  color: var(--body);
+  font-size: 0.92rem;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+}
+.apply-loading.hidden { opacity: 0; }
+.apply-loading .spinner {
+  width: 38px; height: 38px;
+  border: 3px solid var(--teal-light);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Trust strip underneath the form */
+.trust-strip {
+  margin-top: 40px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.trust-item { display: flex; gap: 14px; align-items: flex-start; }
+.trust-item-icon {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-item-icon svg { width: 20px; height: 20px; }
+.trust-item h5 {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.trust-item p { font-size: 0.82rem; color: var(--body); line-height: 1.55; }
+
+/* Help CTA — small block below trust strip */
+.help-block {
+  margin-top: 30px;
+  text-align: center;
+  padding: 28px;
+  background: white;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--body);
+  font-size: 0.95rem;
+}
+.help-block strong { color: var(--ink); }
+.help-block a { color: var(--teal-dark); font-weight: 600; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.help-block a:hover { border-color: var(--teal); }
+
+@media (max-width: 960px) {
+  .apply-wrap { margin-top: -24px; border-radius: var(--radius); }
+  .apply-iframe { height: 2800px; }
+  .trust-strip { grid-template-columns: 1fr; gap: 22px; padding: 26px; }
+}
+@media (max-width: 560px) {
+  .apply-iframe { height: 3200px; }
+  .page-hero.apply-hero { padding: 120px 0 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+        <div class="logo-text">
+          <span class="name">Guidance Funding</span>
+          <span class="tag">Business Capital &amp; Solutions</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-drop">
+          <span>Financing</span>
+          <div class="drop">
+            <div class="drop-col">
+              <h4>Premium Business Financing</h4>
+              <a href="mca.html">Merchant Cash Advance</a>
+              <a href="index.html#loc">Line of Credit</a>
+              <a href="index.html#term">Term Loan</a>
+              <a href="index.html#equipment">Equipment Financing</a>
+            </div>
+            <div class="drop-col">
+              <h4>More Options</h4>
+              <a href="index.html#mortgage">Mortgage Financing</a>
+              <a href="index.html#po">P.O. Financing</a>
+              <a href="index.html#sba">SBA Loan</a>
+              <a href="index.html#factoring">Factoring</a>
+            </div>
+          </div>
+        </li>
+        <li class="has-drop">
+          <span>Solutions</span>
+          <div class="drop">
+            <div class="drop-col">
+              <h4>Small Business Solutions</h4>
+              <a href="index.html#credit-services">Credit Services</a>
+              <a href="index.html#ccp">Credit Card Processing</a>
+              <a href="index.html#bookkeeping">Bookkeeping</a>
+            </div>
+            <div class="drop-col">
+              <h4>More</h4>
+              <a href="index.html#seo">SEO Services</a>
+              <a href="index.html#payroll">Payroll &amp; HR</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="tel:2135227765" class="phone-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="apply.html" class="btn btn-primary">Apply Now <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<aside class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <div class="group">
+    <h4>Financing</h4>
+    <a href="mca.html">Merchant Cash Advance</a>
+    <a href="index.html#loc">Line of Credit</a>
+    <a href="index.html#term">Term Loan</a>
+    <a href="index.html#equipment">Equipment Financing</a>
+    <a href="index.html#mortgage">Mortgage Financing</a>
+    <a href="index.html#po">P.O. Financing</a>
+    <a href="index.html#sba">SBA Loan</a>
+    <a href="index.html#factoring">Factoring</a>
+  </div>
+  <div class="group">
+    <h4>Solutions</h4>
+    <a href="index.html#credit-services">Credit Services</a>
+    <a href="index.html#ccp">Credit Card Processing</a>
+    <a href="index.html#bookkeeping">Bookkeeping</a>
+    <a href="index.html#seo">SEO Services</a>
+    <a href="index.html#payroll">Payroll &amp; HR</a>
+  </div>
+  <a href="index.html#calculator">Calculator</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-cta">
+    <a href="tel:2135227765" class="btn btn-ghost" style="width:100%; margin-bottom:10px;">(213) 522-7765</a>
+    <a href="apply.html" class="btn btn-primary" style="width:100%;">Apply Now</a>
+  </div>
+</aside>
+
+<!-- ========== HERO ========== -->
+<section class="page-hero apply-hero">
+  <div class="container">
+    <div class="crumbs">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Apply</span>
+    </div>
+    <div class="eyebrow eyebrow-light">Start your application</div>
+    <h1>4 steps to <span class="accent">funding</span>.</h1>
+    <p class="lede">
+      Fill out the form below &mdash; it takes about 10 minutes. Once submitted, a specialist reviews your file and reaches out within one business day.
+    </p>
+  </div>
+</section>
+
+<!-- ========== APPLICATION FORM (iframed) ========== -->
+<section class="apply-section">
+  <div class="container">
+    <div class="apply-wrap">
+      <div class="apply-loading" id="applyLoading">
+        <div class="spinner"></div>
+        <div>Loading your application...</div>
+      </div>
+      <iframe
+        id="applyFrame"
+        class="apply-iframe"
+        src="apply-form.html"
+        title="Guidance Funding Application"
+        loading="lazy"
+        scrolling="no"></iframe>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <div>
+          <h5>No obligation</h5>
+          <p>Applying is free and doesn't commit you to anything. Review the offer before accepting.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h5>Your data is secure</h5>
+          <p>All information is encrypted and used only for underwriting your funding request.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <h5>Fast response</h5>
+          <p>A specialist reviews your file and reaches out within one business day with next steps.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help block -->
+    <div class="help-block">
+      <strong>Need a hand with the form?</strong> Call us at <a href="tel:2135227765">(213) 522-7765</a> or email <a href="mailto:admin@guidancefunding.com">admin@guidancefunding.com</a> and we'll walk you through it.
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="index.html" class="logo">
+          <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+          <div class="logo-text">
+            <span class="name">Guidance Funding</span>
+            <span class="tag">Business Capital &amp; Solutions</span>
+          </div>
+        </a>
+        <p>Fast, customized financing built to support your business at every step. Call us today for a free, no-strings-attached consultation.</p>
+        <a href="tel:2135227765" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="mailto:admin@guidancefunding.com" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          admin@guidancefunding.com
+        </a>
+        <a href="#" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Los Angeles, CA
+        </a>
+      </div>
+      <div class="footer-col">
+        <h5>Financing</h5>
+        <ul>
+          <li><a href="mca.html">Merchant Cash Advance</a></li>
+          <li><a href="index.html#loc">Line of Credit</a></li>
+          <li><a href="index.html#term">Term Loan</a></li>
+          <li><a href="index.html#equipment">Equipment Financing</a></li>
+          <li><a href="index.html#sba">SBA Loan</a></li>
+          <li><a href="index.html#factoring">Factoring</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="index.html#credit-services">Credit Services</a></li>
+          <li><a href="index.html#ccp">Credit Card Processing</a></li>
+          <li><a href="index.html#bookkeeping">Bookkeeping</a></li>
+          <li><a href="index.html#seo">SEO Services</a></li>
+          <li><a href="index.html#payroll">Payroll &amp; HR</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Guidance Funding © 2026 — All rights reserved</div>
+      <div>California Lenders License #60DBO 67237</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const navWrap = document.getElementById('navWrap');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) navWrap.classList.add('scrolled');
+  else navWrap.classList.remove('scrolled');
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const mobileNav = document.getElementById('mobileNav');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+});
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    mobileNav.classList.remove('open');
+  });
+});
+
+// ============================================================
+// IFRAME AUTO-RESIZE
+// Listens for height-report postMessages from apply-form.html and
+// resizes the iframe so the whole form is visible without inner scroll.
+// ============================================================
+const applyFrame = document.getElementById('applyFrame');
+const applyLoading = document.getElementById('applyLoading');
+
+window.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'apply-form-height') {
+    const h = parseInt(event.data.height, 10);
+    if (h > 400) {
+      applyFrame.style.height = (h + 30) + 'px';
+      applyLoading.classList.add('hidden');
+    }
+  }
+});
+
+// Fallback: hide the loader after 5 seconds even if no message has arrived
+setTimeout(() => applyLoading.classList.add('hidden'), 5000);
+
+// Scroll to the form's current step smoothly when the iframe reports a height change
+// (Only scrolls when the user is already near the form to avoid jarring jumps.)
+let lastReportedHeight = 0;
+window.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'apply-form-height') {
+    const h = parseInt(event.data.height, 10);
+    // On a large height reduction (step change back), optionally scroll up to the form top
+    if (lastReportedHeight && Math.abs(h - lastReportedHeight) > 400) {
+      const formTop = document.querySelector('.apply-wrap').getBoundingClientRect().top + window.scrollY;
+      const viewportMid = window.scrollY + window.innerHeight / 2;
+      // Only re-align if user is somewhere inside the form
+      if (viewportMid > formTop && viewportMid < formTop + lastReportedHeight) {
+        window.scrollTo({ top: formTop - 60, behavior: 'smooth' });
+      }
+    }
+    lastReportedHeight = h;
+  }
+});
+</script>
+
+</body>
+</html>

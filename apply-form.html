@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Form - 4 Steps to Funding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: transparent;
+            min-height: 100vh;
+            padding: 40px;
+            font-size: 22px;
+            color: #2D2D2D;
+        }
+        .form-container { max-width: 1700px; margin: 0 auto; background: transparent; border-radius: 0; box-shadow: none; overflow: hidden; }
+        .form-header { text-align: center; padding: 80px 70px 70px; background: transparent; }
+        .form-header h1 { font-size: 3.2rem; color: #2D2D2D; margin-bottom: 18px; font-weight: 600; }
+        .form-header h2 { font-size: 2.4rem; color: #2D2D2D; margin-bottom: 35px; font-weight: 500; }
+        .form-header p { color: #2D2D2D; font-size: 1.5rem; line-height: 1.6; max-width: 900px; margin: 0 auto; opacity: 0.7; }
+        .progress-tabs { display: flex; border-bottom: 1px solid #dee2e6; background: transparent; padding: 0 70px; }
+        .tab { flex: 1; padding: 28px 30px; text-align: center; font-weight: 500; color: #adb5bd; cursor: pointer; border-bottom: 4px solid transparent; transition: all 0.3s ease; position: relative; margin-bottom: -1px; font-size: 1.4rem; }
+        .tab.active { color: #2D2D2D; border-bottom-color: #2D2D2D; }
+        .tab.completed { color: #2D2D2D; opacity: 0.6; }
+        .form-content { padding: 80px 70px; }
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+        .section-title { font-size: 2.3rem; color: #2D2D2D; margin-bottom: 50px; font-weight: 600; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin-bottom: 35px; }
+        .form-group { margin-bottom: 0; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { display: block; margin-bottom: 15px; color: #2D2D2D; font-size: 1.3rem; font-weight: 500; }
+        .form-group label.required::after { content: ' *'; color: #dc3545; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%; padding: 20px 24px; border: 2px solid #ced4da; border-radius: 10px;
+            font-size: 1.35rem; transition: all 0.2s ease; background: white; color: #2D2D2D;
+            font-family: 'Montserrat', sans-serif; -moz-appearance: textfield;
+        }
+        .form-group input[type="number"]::-webkit-inner-spin-button,
+        .form-group input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #0A5D57; box-shadow: 0 0 0 3px rgba(10, 93, 87, 0.1); }
+        .form-group input::placeholder { color: #adb5bd; }
+        .checkbox-group { display: flex; align-items: flex-start; margin-top: 12px; padding: 28px 32px; background: #fff; border-radius: 10px; border: 2px solid #e9ecef; }
+        .checkbox-group input[type="checkbox"] { margin-right: 18px; margin-top: 3px; width: 28px; height: 28px; cursor: pointer; accent-color: #0A5D57; }
+        .checkbox-group label { font-size: 1.3rem; color: #2D2D2D; line-height: 1.6; cursor: pointer; margin: 0; font-weight: 500; }
+        .checkbox-group.simple { padding: 0; background: transparent; border: none; }
+        .checkbox-group.simple label { font-size: 1.15rem; font-weight: 400; color: #2D2D2D; opacity: 0.8; }
+        .checkbox-group.simple input[type="checkbox"] { width: 22px; height: 22px; }
+        .consent-text { background: #f8f9fa; padding: 40px; border-radius: 10px; margin-top: 50px; margin-bottom: 30px; font-size: 1.25rem; color: #2D2D2D; line-height: 1.7; border: 2px solid #e9ecef; }
+        .consent-text p { margin-bottom: 15px; }
+        .consent-text p:last-child { margin-bottom: 0; }
+        .consent-text a { color: #0A5D57; text-decoration: none; }
+        .consent-text a:hover { text-decoration: underline; }
+        .toggle-group { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+        .toggle-switch { position: relative; display: inline-block; width: 105px; height: 50px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #dc3545; transition: 0.3s; border-radius: 32px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; }
+        .toggle-slider::after { content: 'No'; position: absolute; color: white; font-size: 1.1rem; font-weight: 600; left: 15px; transition: 0.3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 40px; width: 40px; left: 5px; bottom: 5px; background-color: white; transition: 0.3s; border-radius: 50%; z-index: 1; }
+        .toggle-switch input:checked + .toggle-slider { background-color: #0A5D57; }
+        .toggle-switch input:checked + .toggle-slider::after { content: 'Yes'; left: auto; right: 15px; }
+        .toggle-switch input:checked + .toggle-slider:before { transform: translateX(55px); }
+        .form-group.error input, .form-group.error select { border-color: #dc3545 !important; box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important; animation: shake 0.3s; }
+        .form-group.error label { color: #dc3545; }
+        .form-group.error label::after { content: " - Required"; font-size: 0.85rem; font-weight: 600; }
+        .checkbox-group.error { border-color: #dc3545 !important; background: #fff5f5 !important; animation: shake 0.3s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        .upload-area { border: 3px dashed #ced4da; border-radius: 12px; padding: 70px 40px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #fafbfc; }
+        .upload-area:hover { border-color: #0A5D57; background: #f0faf9; }
+        .upload-area input[type="file"] { display: none; }
+        .upload-text { color: #2D2D2D; font-size: 1.3rem; }
+        .upload-text a { color: #0A5D57; text-decoration: none; font-weight: 500; }
+        .upload-text a:hover { text-decoration: underline; }
+        .upload-note { color: #2D2D2D; font-size: 1.15rem; margin-top: 25px; text-align: center; opacity: 0.7; }
+        .upload-instruction { background: #fff9e6; padding: 20px 28px; border-radius: 8px; margin-top: 30px; font-weight: 600; color: #2D2D2D; font-size: 1.2rem; text-align: center; }
+        .signature-pad { border: 2px solid #ced4da; border-radius: 12px; background: #fafbfc; cursor: crosshair; display: block; width: 100%; height: 280px; }
+        .signature-instruction { color: #2D2D2D; font-size: 1.2rem; margin-bottom: 18px; opacity: 0.8; }
+        .button-group { display: flex; gap: 18px; margin-top: 60px; padding-top: 50px; border-top: 2px solid #e9ecef; }
+        .btn { padding: 20px 45px; border: none; border-radius: 10px; font-size: 1.4rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-family: 'Montserrat', sans-serif; }
+        .btn-primary { background: #12948A; color: white; margin-left: auto; }
+        .btn-primary:hover { background: #084842; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(10, 93, 87, 0.25); }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-save { background: #e9ecef; color: #2D2D2D; }
+        .btn-save:hover { background: #dee2e6; }
+        .file-list { margin-top: 20px; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; border: 2px solid #e9ecef; }
+        .file-item-name { color: #2D2D2D; font-size: 1.2rem; }
+        .file-item-remove { color: #dc3545; cursor: pointer; font-size: 1.15rem; font-weight: 500; }
+        .file-item-remove:hover { text-decoration: underline; }
+        .conditional-section { display: none; margin-top: 20px; }
+        .conditional-section.show { display: block; }
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .form-container { border-radius: 0; }
+            .form-header { padding: 30px 20px 25px; }
+            .form-header h1 { font-size: 1.5rem; }
+            .form-header h2 { font-size: 1.15rem; }
+            .form-header p { font-size: 0.9rem; }
+            .progress-tabs { padding: 0 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .tab { font-size: 0.85rem; padding: 15px 12px; white-space: nowrap; }
+            .form-content { padding: 30px 20px; }
+            .form-row { grid-template-columns: 1fr; gap: 20px; }
+            .section-title { font-size: 1.25rem; }
+            .button-group { flex-direction: column; gap: 10px; }
+            .btn { width: 100%; }
+            .btn-primary { margin-left: 0; order: -1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Information form</h1>
+            <h2 id="steps-count">4 steps to funding</h2>
+            <p>Thank you for placing your trust in us. Please take a few minutes to complete the form below. We will process your request right away.</p>
+        </div>
+
+        <div class="progress-tabs">
+            <div class="tab active" data-step="1">Contact Information</div>
+            <div class="tab" data-step="2">Business Details</div>
+            <div class="tab" data-step="3">Basic Documents</div>
+            <div class="tab" data-step="4">Signature</div>
+        </div>
+
+        <form id="application-form">
+            <!-- Step 1: Contact Information -->
+            <div class="form-step active" id="step-1">
+                <div class="form-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">First name</label>
+                            <input type="text" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Last name</label>
+                            <input type="text" name="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Date of Birth</label>
+                            <input type="date" name="dateOfBirth" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">SSN/NIN</label>
+                            <input type="text" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Email</label>
+                            <input type="email" name="email" placeholder="email@business.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Mobile Phone</label>
+                            <input type="tel" name="mobilePhone" placeholder="(XXX) XXX-XXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="required">Legal Company Name</label>
+                        <input type="text" name="companyName" placeholder="Smith Roofing" required>
+                    </div>
+
+                    <div class="consent-text">
+                        <p><strong>Consent to Communications:</strong></p>
+                        <p>By providing your contact information and signing below, you authorize Guidance Funding (GF) and its representatives, successors, assigns, and designees to communicate with you via phone calls, text messages, and emails, including automated technology and pre-recorded messages, for informational, marketing, or transactional purposes. Standard message and data rates may apply. Message frequency may vary. You may opt-out at any time by replying "STOP" to text messages, unsubscribing from emails, or contacting us directly. You further authorize GF and its designees to obtain consumer or personal, business and investigative reports about you, including credit card processor statements and bank statements, from one or more consumer reporting agencies (including TransUnion, Experian, Equifax, and Identity IQ), banks, creditors, government agencies, and other third parties (collectively, the "Recipients"). GF may transmit this application form, along with any information obtained in connection with it, to any or all Recipients for purposes related to commercial loans or purchases of future receivables (collectively, "Transactions"). You also consent to the release, by any creditor or financial institution, of any information relating to you, to GF and each of the Recipients. GF is authorized to communicate with the Recipients on your behalf and represent you in matters related to the Transactions. Your information will be handled in accordance with our <a href="#">Terms of Use and Privacy Policy</a>.</p>
+                    </div>
+
+                    <div class="checkbox-group" style="margin-bottom: 30px;">
+                        <input type="checkbox" id="consentAgreement" name="consentAgreement" required>
+                        <label for="consentAgreement">I agree to the Consent to Communications stated above <span style="color: #dc3545;">*</span></label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="validateAndProceed()">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Business Details -->
+            <div class="form-step" id="step-2">
+                <div class="form-content">
+                    <h3 class="section-title">Business Details</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Business Start Date</label>
+                            <input type="date" name="businessStartDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Industry</label>
+                            <select name="industry">
+                                <option value="">Select industry</option>
+                                <option value="retail">Retail</option>
+                                <option value="restaurant">Restaurant</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="construction">Construction</option>
+                                <option value="professional-services">Professional Services</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="technology">Technology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">State of Incorporation</label>
+                            <select name="stateOfIncorporation" required>
+                                <option value="">Select state</option>
+                                <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Tax ID / Company Number</label>
+                            <input type="text" name="taxId" placeholder="XX-XXXXXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Company Website</label>
+                            <input type="text" name="companyWebsite" placeholder="Enter URL" id="websiteInput">
+                            <div class="checkbox-group simple" style="margin-top: 10px;">
+                                <input type="checkbox" id="noWebsite" onchange="toggleWebsite(this)">
+                                <label for="noWebsite">This business does not have a website</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Business Phone</label>
+                            <input type="tel" name="businessPhone" placeholder="(XXX) XXX-XXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">FICO Score</label>
+                            <input type="text" name="ficoScore" placeholder="250-900" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Ownership %</label>
+                            <input type="text" name="ownership" placeholder="%" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Number of Employees</label>
+                            <input type="number" name="employees" placeholder="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Entity Type</label>
+                            <select name="entityType" required>
+                                <option value="">Select entity type</option>
+                                <option value="c-corp">C Corporation (C Corp)</option>
+                                <option value="gp">General Partnership (GP)</option>
+                                <option value="llc">Limited Liability Company (LLC)</option>
+                                <option value="lllp">Limited Liability Limited Partnership (LLLP)</option>
+                                <option value="llp">Limited Liability Partnership (LLP)</option>
+                                <option value="lp">Limited Partnership (LP)</option>
+                                <option value="pc">Professional Corporation (PC)</option>
+                                <option value="pllc">Professional Limited Liability Company (PLLC)</option>
+                                <option value="s-corp">S Corporation (S Corp)</option>
+                                <option value="sole">Sole Proprietorship</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Amount Requested</label>
+                            <input type="text" name="amountRequested" placeholder="Enter an amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Do you process credit cards?</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" name="creditCards" onchange="updateToggleValue(this, 'creditCards')">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">Do you own multiple businesses?</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" name="multipleBusinesses" onchange="updateToggleValue(this, 'multipleBusinesses')">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Is your business home based?</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" name="homeBased" id="homeBasedToggle" checked onchange="toggleHomeBased(this)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="combinedAddressSection">
+                        <h3 class="section-title" style="margin-top: 40px;">Home/Business Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Address Line 1</label>
+                                <input type="text" name="address1" placeholder="42 Railroad st." id="combinedAddress1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Line 2</label>
+                                <input type="text" name="address2" placeholder="Apt. 4" id="combinedAddress2">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">City</label>
+                                <input type="text" name="city" placeholder="New York" id="combinedCity" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="required">State</label>
+                                <select name="state" id="combinedState" required>
+                                    <option value="">Select state</option>
+                                    <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Zip</label>
+                                <input type="text" name="zip" id="combinedZip" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="required">I own home property</label>
+                                <div class="toggle-group">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" name="ownProperty" id="ownPropertyToggle" onchange="toggleOwnProperty(this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="homePropertyFields" class="conditional-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="required">Home Property Value ($)</label>
+                                    <input type="text" name="homePropertyValue" placeholder="$0">
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">Home Property Equity ($)</label>
+                                    <input type="text" name="homePropertyEquity" placeholder="$0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="separateAddresses" class="conditional-section" style="display: none;">
+                    <div class="form-content" style="padding-top: 0;">
+                        <h3 class="section-title" style="margin-top: 20px;">Business Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Business Address Line 1</label>
+                                <input type="text" name="businessAddress1" placeholder="42 Railroad st." id="businessAddress1">
+                            </div>
+                            <div class="form-group">
+                                <label>Business Address Line 2</label>
+                                <input type="text" name="businessAddress2" placeholder="Apt. 4" id="businessAddress2">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Business City</label>
+                                <input type="text" name="businessCity" placeholder="New York" id="businessCity">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">Business State</label>
+                                <select name="businessState" id="businessState">
+                                    <option value="">Select state</option>
+                                    <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Business Zip</label>
+                                <input type="text" name="businessZip" id="businessZip">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">I own business property</label>
+                                <div class="toggle-group">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" name="ownBusinessProperty" id="ownBusinessPropertyToggle" onchange="toggleOwnBusinessProperty(this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="businessPropertyFields" class="conditional-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="required">Business Property Value ($)</label>
+                                    <input type="text" name="businessPropertyValue" placeholder="$0">
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">Business Property Equity ($)</label>
+                                    <input type="text" name="businessPropertyEquity" placeholder="$0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="section-title" style="margin-top: 40px;">Home Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Home Address Line 1</label>
+                                <input type="text" name="homeAddress1" placeholder="42 Railroad st." id="homeAddress1">
+                            </div>
+                            <div class="form-group">
+                                <label>Home Address Line 2</label>
+                                <input type="text" name="homeAddress2" placeholder="Apt. 4" id="homeAddress2">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Home City</label>
+                                <input type="text" name="homeCity" placeholder="New York" id="homeCity">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">Home State</label>
+                                <select name="homeState" id="homeState">
+                                    <option value="">Select state</option>
+                                    <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Home Zip</label>
+                                <input type="text" name="homeZip" id="homeZip">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">I own home property</label>
+                                <div class="toggle-group">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" name="ownHomeProperty" id="ownHomePropertyToggle" onchange="toggleOwnHomeProperty(this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="homePropertyFieldsSeparate" class="conditional-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="required">Home Property Value ($)</label>
+                                    <input type="text" name="homePropertyValueSeparate" placeholder="$0">
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">Home Property Equity ($)</label>
+                                    <input type="text" name="homePropertyEquitySeparate" placeholder="$0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-content" style="padding-top: 0;">
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(1)">Previous</button>
+                        <button type="button" class="btn btn-save">Save for later</button>
+                        <button type="button" class="btn btn-primary" onclick="if(validateStep2()) nextStep(3)">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Basic Documents -->
+            <div class="form-step" id="step-3">
+                <div class="form-content">
+                    <h3 class="section-title">Basic Documents</h3>
+
+                    <div class="form-group">
+                        <label>Bank Statement(s)</label>
+                        <div class="upload-area" onclick="document.getElementById('bankStatements').click()">
+                            <input type="file" id="bankStatements" name="bankStatements" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" onchange="handleFileUpload(this, 'bank-files')">
+                            <div class="upload-text">Drop a file or <a href="#">browse</a></div>
+                        </div>
+                        <div id="bank-files" class="file-list"></div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 30px;">
+                        <label>Additional Document(s)</label>
+                        <div class="upload-area" onclick="document.getElementById('additionalDocs').click()">
+                            <input type="file" id="additionalDocs" name="additionalDocs" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" onchange="handleFileUpload(this, 'additional-files')">
+                            <div class="upload-text">Drop a file or <a href="#">browse</a></div>
+                        </div>
+                        <div id="additional-files" class="file-list"></div>
+                    </div>
+
+                    <div class="upload-note">Supported formats are PDF, JPG, JPEG, PNG, TIFF less than 10Mb</div>
+                    <div class="upload-instruction">Please include last 4 months of business bank statements</div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(2)">Previous</button>
+                        <button type="button" class="btn btn-save">Save for later</button>
+                        <button type="button" class="btn btn-primary" onclick="if(validateStep3()) nextStep(4)">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Signature -->
+            <div class="form-step" id="step-4">
+                <div class="form-content">
+                    <h3 class="section-title">Confirm Application</h3>
+
+                    <div class="consent-text">
+                        <p>By signing below, each of the above listed business and business owner/officer (individually and collectively, "you") authorize Guidance Funding ("GF") and each of its representatives, successors, assigns and designees that may be involved with or acquire commercial loans or purchases of future receivables including, without limitation, the application therefor (collectively, "Transactions") to obtain consumer or personal, business and investigative reports and other information about you, including credit card processor statements and bank statements, from one or more consumer reporting agencies, such as TransUnion, Experian and Equifax, Identity IQ and from other credit bureaus, banks, creditors, government agencies and other third parties (the "Recipients"). You also authorize GF to transmit this application form, along with any of the foregoing information obtained in connection with this application, to any or all of the Recipients for the foregoing purposes. You also consent to the release, by any creditor or financial institution, of any information relating to any of you, to GF and to each of the Recipients, on its own behalf and authorize GF to communicate with the Recipients on your behalf and represent you with the Recipients. You also authorize GF and each of its Recipients to contact you via text message, automated call or email message at the contact information listed above.</p>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 30px;">
+                        <label class="required">Owner's Signature</label>
+                        <div class="signature-instruction">Use your mouse to sign below</div>
+                        <canvas id="signaturePad" class="signature-pad"></canvas>
+                        <button type="button" class="btn btn-save" style="margin-top: 10px; display: inline-block; width: auto;" onclick="clearSignature()">Clear</button>
+                    </div>
+
+                    <div class="checkbox-group simple" style="margin-top: 30px;">
+                        <input type="checkbox" id="specialOffers" name="specialOffers">
+                        <label for="specialOffers">Opt-in to receive special offers</label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep(3)">Previous</button>
+                        <button type="button" class="btn btn-save">Save for later</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let isDrawing = false;
+
+        function clearErrors() {
+            document.querySelectorAll('.form-group.error, .checkbox-group.error').forEach(el => el.classList.remove('error'));
+        }
+        function scrollToFirstError() {
+            const firstError = document.querySelector('.form-group.error, .checkbox-group.error');
+            if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function validateStep1() {
+            clearErrors();
+            let errors = [];
+            const fields = {
+                firstName: 'First Name', lastName: 'Last Name', dateOfBirth: 'Date of Birth',
+                ssn: 'SSN/NIN', email: 'Email', mobilePhone: 'Mobile Phone', companyName: 'Legal Company Name'
+            };
+            Object.entries(fields).forEach(([name, label]) => {
+                const el = document.querySelector(`input[name="${name}"]`);
+                if (!el.value.trim()) {
+                    el.closest('.form-group').classList.add('error');
+                    errors.push(label);
+                }
+            });
+            const email = document.querySelector('input[name="email"]');
+            if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+                email.closest('.form-group').classList.add('error');
+                errors.push('Valid Email');
+            }
+            const consent = document.getElementById('consentAgreement');
+            if (!consent.checked) {
+                consent.closest('.checkbox-group').classList.add('error');
+                errors.push('Consent Agreement');
+            }
+            if (errors.length > 0) {
+                scrollToFirstError();
+                alert('Please fill in the following required fields:\n\n• ' + errors.join('\n• '));
+                return false;
+            }
+            return true;
+        }
+
+        function validateStep2() {
+            clearErrors();
+            let errors = [];
+            const requiredFields = [
+                ['input[name="businessStartDate"]', 'Business Start Date'],
+                ['select[name="industry"]', 'Industry'],
+                ['select[name="stateOfIncorporation"]', 'State of Incorporation'],
+                ['input[name="taxId"]', 'Tax ID'],
+                ['input[name="businessPhone"]', 'Business Phone'],
+                ['input[name="ficoScore"]', 'FICO Score'],
+                ['input[name="ownership"]', 'Ownership %'],
+                ['input[name="employees"]', 'Number of Employees'],
+                ['select[name="entityType"]', 'Entity Type'],
+                ['input[name="amountRequested"]', 'Amount Requested']
+            ];
+            requiredFields.forEach(([selector, label]) => {
+                const el = document.querySelector(selector);
+                if (!el.value || !el.value.toString().trim()) {
+                    el.closest('.form-group').classList.add('error');
+                    errors.push(label);
+                }
+            });
+            const websiteInput = document.getElementById('websiteInput');
+            const noWebsite = document.getElementById('noWebsite').checked;
+            if (!websiteInput.value.trim() && !noWebsite) {
+                websiteInput.closest('.form-group').classList.add('error');
+                errors.push('Company Website');
+            }
+
+            const homeBased = document.getElementById('homeBasedToggle').checked;
+            if (homeBased) {
+                [['combinedAddress1','Address Line 1'],['combinedCity','City'],['combinedState','State'],['combinedZip','Zip Code']].forEach(([id,label]) => {
+                    const el = document.getElementById(id);
+                    if (!el.value.trim()) { el.closest('.form-group').classList.add('error'); errors.push(label); }
+                });
+            } else {
+                [['businessAddress1','Business Address Line 1'],['businessCity','Business City'],['businessState','Business State'],['businessZip','Business Zip'],
+                 ['homeAddress1','Home Address Line 1'],['homeCity','Home City'],['homeState','Home State'],['homeZip','Home Zip']].forEach(([id,label]) => {
+                    const el = document.getElementById(id);
+                    if (!el.value.trim()) { el.closest('.form-group').classList.add('error'); errors.push(label); }
+                });
+            }
+            if (errors.length > 0) {
+                scrollToFirstError();
+                alert('Please fill in the following required fields:\n\n• ' + errors.join('\n• '));
+                return false;
+            }
+            return true;
+        }
+
+        function validateStep3() {
+            // Bug fix: originally referenced 'bankStatement' (singular), but input id is 'bankStatements' (plural)
+            const bankStatementInput = document.getElementById('bankStatements');
+            if (!bankStatementInput.files || bankStatementInput.files.length === 0) {
+                const uploadArea = document.querySelector('.upload-area');
+                if (uploadArea) {
+                    uploadArea.style.borderColor = '#dc3545';
+                    uploadArea.style.background = '#fff5f5';
+                    setTimeout(() => { uploadArea.style.borderColor = ''; uploadArea.style.background = ''; }, 3000);
+                }
+                alert('Please upload the following required documents:\n\n• Business Bank Statements (last 4 months)');
+                return false;
+            }
+            return true;
+        }
+
+        function validateAndProceed() { if (validateStep1()) nextStep(2); }
+        function updateToggleValue(checkbox) { checkbox.value = checkbox.checked ? 'Yes' : 'No'; }
+
+        function toggleHomeBased(checkbox) {
+            checkbox.value = checkbox.checked ? 'Yes' : 'No';
+            document.getElementById('combinedAddressSection').style.display = checkbox.checked ? 'block' : 'none';
+            document.getElementById('separateAddresses').style.display = checkbox.checked ? 'none' : 'block';
+        }
+        function toggleOwnProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; document.getElementById('homePropertyFields').classList.toggle('show', cb.checked); }
+        function toggleOwnBusinessProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; document.getElementById('businessPropertyFields').classList.toggle('show', cb.checked); }
+        function toggleOwnHomeProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; document.getElementById('homePropertyFieldsSeparate').classList.toggle('show', cb.checked); }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.toggle-switch input[type="checkbox"]').forEach(t => t.value = t.checked ? 'Yes' : 'No');
+            document.querySelectorAll('input, select').forEach(f => {
+                f.addEventListener('input', () => f.closest('.form-group')?.classList.remove('error'));
+                f.addEventListener('change', () => f.closest('.form-group')?.classList.remove('error'));
+            });
+            document.querySelectorAll('.checkbox-group input[type="checkbox"]').forEach(c => {
+                c.addEventListener('change', () => c.closest('.checkbox-group')?.classList.remove('error'));
+            });
+            initializeSignaturePad();
+        });
+
+        function initializeSignaturePad() {
+            const canvas = document.getElementById('signaturePad');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const parentWidth = canvas.parentElement?.offsetWidth || 1600;
+            canvas.width = parentWidth;
+            canvas.height = 280;
+            ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+            const newCanvas = canvas.cloneNode(true);
+            canvas.parentNode.replaceChild(newCanvas, canvas);
+            const freshCanvas = document.getElementById('signaturePad');
+            freshCanvas.addEventListener('mousedown', startDrawing);
+            freshCanvas.addEventListener('mousemove', draw);
+            freshCanvas.addEventListener('mouseup', stopDrawing);
+            freshCanvas.addEventListener('mouseout', stopDrawing);
+            freshCanvas.addEventListener('touchstart', handleTouch);
+            freshCanvas.addEventListener('touchmove', handleTouch);
+            freshCanvas.addEventListener('touchend', stopDrawing);
+        }
+        function startDrawing(e) {
+            isDrawing = true;
+            const canvas = document.getElementById('signaturePad');
+            const ctx = canvas.getContext('2d');
+            const rect = canvas.getBoundingClientRect();
+            ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+        function draw(e) {
+            if (!isDrawing) return;
+            const canvas = document.getElementById('signaturePad');
+            const ctx = canvas.getContext('2d');
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+        }
+        function stopDrawing() { isDrawing = false; }
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const type = e.type === 'touchstart' ? 'mousedown' : e.type === 'touchmove' ? 'mousemove' : 'mouseup';
+            e.target.dispatchEvent(new MouseEvent(type, { clientX: touch.clientX, clientY: touch.clientY }));
+        }
+        function clearSignature() {
+            const canvas = document.getElementById('signaturePad');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        }
+
+        function nextStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.add('completed');
+            currentStep = step;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.add('active');
+            if (currentStep === 4) {
+                document.getElementById('steps-count').textContent = 'Confirm Application';
+                setTimeout(() => initializeSignaturePad(), 100);
+            } else {
+                const remaining = 5 - currentStep;
+                document.getElementById('steps-count').textContent = `${remaining} step${remaining !== 1 ? 's' : ''} to funding`;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function previousStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+            currentStep = step;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.add('active');
+            document.querySelector(`.tab[data-step="${currentStep}"]`).classList.remove('completed');
+            if (currentStep === 4) document.getElementById('steps-count').textContent = 'Confirm Application';
+            else { const remaining = 5 - currentStep; document.getElementById('steps-count').textContent = `${remaining} step${remaining !== 1 ? 's' : ''} to funding`; }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleWebsite(checkbox) {
+            const input = document.getElementById('websiteInput');
+            if (checkbox.checked) { input.disabled = true; input.value = 'N/A'; input.style.opacity = '0.5'; }
+            else { input.disabled = false; input.value = ''; input.style.opacity = '1'; }
+        }
+        function handleFileUpload(input, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            Array.from(input.files).forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `<span class="file-item-name">${file.name}</span><span class="file-item-remove" onclick="removeFile(this)">Remove</span>`;
+                container.appendChild(fileItem);
+            });
+        }
+        function removeFile(element) { element.parentElement.remove(); }
+
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const canvas = document.getElementById('signaturePad');
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const hasSignature = imageData.data.some(channel => channel !== 0);
+            if (!hasSignature) { alert('Please provide your signature'); return; }
+            const formData = new FormData(this);
+            formData.append('signature', canvas.toDataURL());
+            console.log('Form submitted!', Object.fromEntries(formData));
+            alert('Thank you! Your application has been submitted. We will process your request right away.');
+            // Redirect to MyRM or thank you page:
+            // window.location.href = 'https://apply.myrmapp.com/multi-step-apply/lisagl';
+        });
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetStep = parseInt(this.getAttribute('data-step'));
+                if (targetStep < currentStep || this.classList.contains('completed')) {
+                    document.getElementById(`step-${currentStep}`).classList.remove('active');
+                    document.querySelector(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+                    currentStep = targetStep;
+                    document.getElementById(`step-${currentStep}`).classList.add('active');
+                    this.classList.add('active');
+                    if (currentStep === 4) {
+                        document.getElementById('steps-count').textContent = 'Confirm Application';
+                        setTimeout(() => initializeSignaturePad(), 100);
+                    } else {
+                        const remaining = 5 - currentStep;
+                        document.getElementById('steps-count').textContent = `${remaining} step${remaining !== 1 ? 's' : ''} to funding`;
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================================
+        // POSTMESSAGE: Report content height to parent (apply.html iframe wrapper)
+        // so it can auto-resize the iframe and avoid awkward inner scrollbars.
+        // ============================================================
+        function reportHeight() {
+            try {
+                const h = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                window.parent.postMessage({ type: 'apply-form-height', height: h }, '*');
+            } catch(e) { /* not iframed — ignore */ }
+        }
+        window.addEventListener('load', reportHeight);
+        window.addEventListener('resize', reportHeight);
+        // Re-report whenever DOM changes (step switch, error messages, expanded sections, file list updates)
+        const heightObserver = new MutationObserver(reportHeight);
+        heightObserver.observe(document.body, { childList: true, subtree: true, attributes: true, characterData: true });
+        // Cadence fallback for the first 10 seconds (catches font-loading, images, etc.)
+        let _heightTicks = 0;
+        const _heightInterval = setInterval(() => {
+            reportHeight();
+            if (++_heightTicks > 20) clearInterval(_heightInterval);
+        }, 500);
+    </script>
+</body>
+</html>
