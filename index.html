@@ -189,21 +189,18 @@ h1, h2, h3, h4, h5 {
   flex-shrink: 0;
 }
 .logo-mark {
-  width: 40px;
-  height: 42px;
-  background: var(--teal);
-  border-radius: 10px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 7px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  color: var(--teal);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 .logo:hover .logo-mark {
   transform: rotate(-6deg);
-  background: var(--teal-dark);
+  color: var(--teal-dark);
 }
-.logo-mark img { width: 100%; height: 100%; object-fit: contain; }
+.logo-mark svg { height: 100%; width: auto; display: block; fill: currentColor; }
 .logo-text {
   display: flex;
   flex-direction: column;
@@ -652,9 +649,7 @@ h1, h2, h3, h4, h5 {
 .stat {
   text-align: center;
   padding: 20px;
-  border-right: 1px solid var(--line);
 }
-.stat:last-child { border-right: none; }
 .stat .num {
   font-family: var(--display);
   font-size: clamp(2.8rem, 5vw, 4rem);
@@ -1042,21 +1037,6 @@ h1, h2, h3, h4, h5 {
   gap: 24px;
   position: relative;
 }
-.process-grid::before {
-  content: "";
-  position: absolute;
-  top: 44px;
-  left: 12.5%;
-  right: 12.5%;
-  height: 2px;
-  background-image: linear-gradient(90deg, var(--teal) 0, var(--teal) 100%);
-  background-size: 0% 100%;
-  background-repeat: no-repeat;
-  background-color: var(--line);
-  z-index: 0;
-  transition: background-size 1.4s ease;
-}
-.process-grid.activated::before { background-size: 100% 100%; }
 .step {
   position: relative;
   z-index: 1;
@@ -1459,7 +1439,9 @@ h1, h2, h3, h4, h5 {
 }
 .footer .logo-text .name { color: white; }
 .footer .logo-text .tag { color: rgba(255,255,255,0.5); }
-.footer .logo-mark { background: var(--teal); }
+/* Footer inverts the inline logo SVG to white for contrast on the dark footer */
+.footer .logo-mark { color: white; }
+.footer .logo:hover .logo-mark { color: rgba(255,255,255,0.8); }
 .footer-about p {
   font-size: 0.92rem;
   line-height: 1.7;
@@ -1597,8 +1579,7 @@ h1, h2, h3, h4, h5 {
   .float-badge.bottom { right: 0; bottom: -15px; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 12px; }
-  .stat { border-right: none; padding: 10px; }
-  .stat:nth-child(odd) { border-right: 1px solid var(--line); }
+  .stat { padding: 10px; }
 
   .calc-grid { grid-template-columns: 1fr; gap: 40px; }
   .intro { padding: 70px 0 40px; }
@@ -1606,7 +1587,6 @@ h1, h2, h3, h4, h5 {
 
   .prod-grid, .sol-grid { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
-  .process-grid::before { display: none; }
 
   .test-slide { padding: 32px 28px; }
   .test-slide blockquote { font-size: 1.1rem; }
@@ -1621,8 +1601,26 @@ h1, h2, h3, h4, h5 {
   .sticky-cta .text { font-size: 0.8rem; }
 }
 @media (max-width: 560px) {
+  /* On small mobile, there isn't room for the marketing copy. Drop the text,
+     keep the pill compact, make the Apply button the primary element. */
+  .sticky-cta {
+    padding: 10px 10px 10px 20px;
+    gap: 10px;
+    bottom: 16px;
+    max-width: calc(100vw - 24px);
+  }
+  .sticky-cta .text { display: none; }
+  .sticky-cta a {
+    padding: 11px 22px;
+    font-size: 0.92rem;
+  }
+  .sticky-cta .close {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
   .prod-grid, .sol-grid, .process-grid { grid-template-columns: 1fr; }
-  .stat:nth-child(odd) { border-right: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .calc-widget { padding: 24px 20px; }
   .cta-right { padding: 24px; }
@@ -1639,7 +1637,7 @@ h1, h2, h3, h4, h5 {
   <nav class="nav">
     <div class="nav-inner">
       <a href="#home" class="logo">
-        <div class="logo-mark"><img src="guidance-logo.png" alt="Guidance Funding" /></div>
+        <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
         <div class="logo-text">
           <span class="name">Guidance Funding</span>
           <span class="tag">Business Capital &amp; Solutions</span>
@@ -2318,7 +2316,7 @@ h1, h2, h3, h4, h5 {
     <div class="footer-grid">
       <div class="footer-about">
         <a href="#home" class="logo">
-          <div class="logo-mark"><img src="guidance-logo.png" alt="Guidance Funding" /></div>
+          <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
           <div class="logo-text">
             <span class="name">Guidance Funding</span>
             <span class="tag">Business Capital &amp; Solutions</span>
