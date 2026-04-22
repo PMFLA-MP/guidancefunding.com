@@ -197,7 +197,6 @@ h1, h2, h3, h4, h5 {
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .logo:hover .logo-mark {
-  transform: rotate(-6deg);
   color: var(--teal-dark);
 }
 .logo-mark svg { height: 100%; width: auto; display: block; fill: currentColor; }
@@ -405,24 +404,7 @@ h1, h2, h3, h4, h5 {
 }
 .hero h1 .highlight {
   color: var(--amber);
-  position: relative;
   display: inline-block;
-}
-.hero h1 .highlight::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: 4px;
-  right: 0;
-  height: 10px;
-  background: rgba(245, 166, 35, 0.2);
-  z-index: -1;
-  border-radius: 3px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: sweep 1s 0.6s forwards cubic-bezier(.25,.46,.45,.94);
-}
-@keyframes sweep {
-  to { transform: scaleX(1); }
 }
 .hero-sub {
   font-size: 1.15rem;
@@ -1651,17 +1633,17 @@ h1, h2, h3, h4, h5 {
           <div class="drop">
             <div class="drop-col">
               <h4>Premium Business Financing</h4>
-              <a href="#mca">Merchant Cash Advance</a>
-              <a href="#loc">Line of Credit</a>
-              <a href="#term">Term Loan</a>
-              <a href="#equipment">Equipment Financing</a>
+              <a href="mca.html">Merchant Cash Advance</a>
+              <a href="loc.html">Line of Credit</a>
+              <a href="term.html">Term Loan</a>
+              <a href="equipment.html">Equipment Financing</a>
             </div>
             <div class="drop-col">
               <h4>More Options</h4>
-              <a href="#mortgage">Mortgage Financing</a>
-              <a href="#po">P.O. Financing</a>
-              <a href="#sba">SBA Loan</a>
-              <a href="#factoring">Factoring</a>
+              <a href="mortgage.html">Mortgage Financing</a>
+              <a href="po.html">P.O. Financing</a>
+              <a href="sba.html">SBA Loan</a>
+              <a href="factoring.html">Factoring</a>
             </div>
           </div>
         </li>
@@ -1670,20 +1652,20 @@ h1, h2, h3, h4, h5 {
           <div class="drop">
             <div class="drop-col">
               <h4>Small Business Solutions</h4>
-              <a href="#credit-services">Credit Services</a>
-              <a href="#ccp">Credit Card Processing</a>
-              <a href="#bookkeeping">Bookkeeping Services</a>
+              <a href="credit-services.html">Credit Services</a>
+              <a href="ccp.html">Credit Card Processing</a>
+              <a href="bookkeeping.html">Bookkeeping Services</a>
             </div>
             <div class="drop-col">
               <h4>&nbsp;</h4>
-              <a href="#seo">SEO Services</a>
-              <a href="#payroll">Payroll &amp; HR</a>
+              <a href="seo.html">SEO Services</a>
+              <a href="payroll.html">Payroll &amp; HR</a>
             </div>
           </div>
         </li>
         <li><a href="#calculator">Calculator</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
 
       <div class="nav-right">
@@ -1708,26 +1690,26 @@ h1, h2, h3, h4, h5 {
   <a href="#home">Home</a>
   <div class="group">
     <h4>Financing</h4>
-    <a href="#mca">Merchant Cash Advance</a>
-    <a href="#loc">Line of Credit</a>
-    <a href="#term">Term Loan</a>
-    <a href="#equipment">Equipment Financing</a>
-    <a href="#mortgage">Mortgage Financing</a>
-    <a href="#po">P.O. Financing</a>
-    <a href="#sba">SBA Loan</a>
-    <a href="#factoring">Factoring</a>
+    <a href="mca.html">Merchant Cash Advance</a>
+    <a href="loc.html">Line of Credit</a>
+    <a href="term.html">Term Loan</a>
+    <a href="equipment.html">Equipment Financing</a>
+    <a href="mortgage.html">Mortgage Financing</a>
+    <a href="po.html">P.O. Financing</a>
+    <a href="sba.html">SBA Loan</a>
+    <a href="factoring.html">Factoring</a>
   </div>
   <div class="group">
     <h4>Solutions</h4>
-    <a href="#credit-services">Credit Services</a>
-    <a href="#ccp">Credit Card Processing</a>
-    <a href="#bookkeeping">Bookkeeping</a>
-    <a href="#seo">SEO Services</a>
-    <a href="#payroll">Payroll &amp; HR</a>
+    <a href="credit-services.html">Credit Services</a>
+    <a href="ccp.html">Credit Card Processing</a>
+    <a href="bookkeeping.html">Bookkeeping</a>
+    <a href="seo.html">SEO Services</a>
+    <a href="payroll.html">Payroll &amp; HR</a>
   </div>
   <a href="#calculator">Calculator</a>
   <a href="#faq">FAQ</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.html">Contact</a>
   <div class="mobile-cta">
     <a href="tel:2135227765" class="btn btn-ghost" style="width:100%; margin-bottom:10px;">(213) 522-7765</a>
     <a href="#apply" class="btn btn-primary" style="width:100%;">Apply Now</a>
@@ -1964,7 +1946,7 @@ h1, h2, h3, h4, h5 {
 
     <div class="prod-grid" id="prodGrid">
 
-      <a href="#mca" class="prod reveal" data-cats="quick">
+      <a href="mca.html" class="prod reveal" data-cats="quick">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
         </div>
@@ -1973,7 +1955,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#loc" class="prod reveal" data-cats="quick,growth" style="transition-delay:0.05s;">
+      <a href="loc.html" class="prod reveal" data-cats="quick,growth" style="transition-delay:0.05s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </div>
@@ -1982,7 +1964,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#term" class="prod reveal" data-cats="growth" style="transition-delay:0.1s;">
+      <a href="term.html" class="prod reveal" data-cats="growth" style="transition-delay:0.1s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
@@ -1991,7 +1973,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#equipment" class="prod reveal" data-cats="asset" style="transition-delay:0.15s;">
+      <a href="equipment.html" class="prod reveal" data-cats="asset" style="transition-delay:0.15s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         </div>
@@ -2000,7 +1982,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#mortgage" class="prod reveal" data-cats="asset,growth">
+      <a href="mortgage.html" class="prod reveal" data-cats="asset,growth">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><rect x="9" y="12" width="6" height="9"/></svg>
         </div>
@@ -2009,7 +1991,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#po" class="prod reveal" data-cats="asset" style="transition-delay:0.05s;">
+      <a href="po.html" class="prod reveal" data-cats="asset" style="transition-delay:0.05s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
         </div>
@@ -2018,7 +2000,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#sba" class="prod reveal" data-cats="government,growth" style="transition-delay:0.1s;">
+      <a href="sba.html" class="prod reveal" data-cats="government,growth" style="transition-delay:0.1s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
@@ -2027,7 +2009,7 @@ h1, h2, h3, h4, h5 {
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
 
-      <a href="#factoring" class="prod reveal" data-cats="quick,asset" style="transition-delay:0.15s;">
+      <a href="factoring.html" class="prod reveal" data-cats="quick,asset" style="transition-delay:0.15s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
         </div>
@@ -2049,7 +2031,7 @@ h1, h2, h3, h4, h5 {
     </div>
 
     <div class="sol-grid">
-      <a href="#credit-services" class="prod reveal">
+      <a href="credit-services.html" class="prod reveal">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
         </div>
@@ -2057,7 +2039,7 @@ h1, h2, h3, h4, h5 {
         <p>Strengthen your credit profile. Remove negative entries and boost your score to unlock better terms.</p>
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
-      <a href="#ccp" class="prod reveal" style="transition-delay:0.05s;">
+      <a href="ccp.html" class="prod reveal" style="transition-delay:0.05s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
         </div>
@@ -2065,7 +2047,7 @@ h1, h2, h3, h4, h5 {
         <p>Modern payment options with state-of-the-art terminals and online processing for seamless checkout.</p>
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
-      <a href="#bookkeeping" class="prod reveal" style="transition-delay:0.1s;">
+      <a href="bookkeeping.html" class="prod reveal" style="transition-delay:0.1s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </div>
@@ -2073,7 +2055,7 @@ h1, h2, h3, h4, h5 {
         <p>Professional bookkeeping to keep finances organized, compliant, and ready for tax season.</p>
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
-      <a href="#seo" class="prod reveal" style="transition-delay:0.15s;">
+      <a href="seo.html" class="prod reveal" style="transition-delay:0.15s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
@@ -2081,7 +2063,7 @@ h1, h2, h3, h4, h5 {
         <p>Boost online visibility and attract more leads. Tailor your web presence so customers find you organically.</p>
         <span class="learn">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8h12M10 3l5 5-5 5"/></svg></span>
       </a>
-      <a href="#payroll" class="prod reveal" style="transition-delay:0.2s;">
+      <a href="payroll.html" class="prod reveal" style="transition-delay:0.2s;">
         <div class="prod-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
@@ -2340,25 +2322,25 @@ h1, h2, h3, h4, h5 {
       <div class="footer-col">
         <h5>Financing</h5>
         <ul>
-          <li><a href="#mca">Merchant Cash Advance</a></li>
-          <li><a href="#loc">Line of Credit</a></li>
-          <li><a href="#term">Term Loan</a></li>
-          <li><a href="#equipment">Equipment Financing</a></li>
-          <li><a href="#mortgage">Mortgage Financing</a></li>
-          <li><a href="#po">P.O. Financing</a></li>
-          <li><a href="#sba">SBA Loan</a></li>
-          <li><a href="#factoring">Factoring</a></li>
+          <li><a href="mca.html">Merchant Cash Advance</a></li>
+          <li><a href="loc.html">Line of Credit</a></li>
+          <li><a href="term.html">Term Loan</a></li>
+          <li><a href="equipment.html">Equipment Financing</a></li>
+          <li><a href="mortgage.html">Mortgage Financing</a></li>
+          <li><a href="po.html">P.O. Financing</a></li>
+          <li><a href="sba.html">SBA Loan</a></li>
+          <li><a href="factoring.html">Factoring</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h5>Solutions</h5>
         <ul>
-          <li><a href="#credit-services">Credit Services</a></li>
-          <li><a href="#ccp">Credit Card Processing</a></li>
-          <li><a href="#bookkeeping">Bookkeeping</a></li>
-          <li><a href="#seo">SEO Services</a></li>
-          <li><a href="#payroll">Payroll &amp; HR</a></li>
+          <li><a href="credit-services.html">Credit Services</a></li>
+          <li><a href="ccp.html">Credit Card Processing</a></li>
+          <li><a href="bookkeeping.html">Bookkeeping</a></li>
+          <li><a href="seo.html">SEO Services</a></li>
+          <li><a href="payroll.html">Payroll &amp; HR</a></li>
         </ul>
       </div>
 
@@ -2370,7 +2352,7 @@ h1, h2, h3, h4, h5 {
           <li><a href="#calculator">Calculator</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <li><a href="#terms">Terms &amp; Conditions</a></li>
           <li><a href="#privacy">Privacy Policy</a></li>
         </ul>
