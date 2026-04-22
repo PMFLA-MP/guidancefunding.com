@@ -456,7 +456,7 @@ h1, h2, h3, h4, h5 {
 .rate-card:hover { transform: translateY(-6px); }
 .rate-card-head {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 24px;
   padding-bottom: 18px;
@@ -573,6 +573,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   gap: 10px;
   animation: float 4s ease-in-out infinite;
+  z-index: 3;
 }
 .float-badge .icon {
   width: 36px; height: 36px;
@@ -1765,7 +1766,6 @@ h1, h2, h3, h4, h5 {
 
       <div class="rate-card" id="heroRateCard">
         <div class="rate-card-head">
-          <span class="badge">Sample Rate</span>
           <span class="live"><span class="dot"></span>Live</span>
         </div>
         <h3>Funding From</h3>
