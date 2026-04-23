@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apply for Funding — Guidance Funding</title>
+<meta name="description" content="Complete your funding application in 4 quick steps. Fast approval, funding in as little as one business day." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+
+<style>
+/* ============================================================
+   APPLY PAGE — page chrome (hero, trust strip, help block)
+   ============================================================ */
+.page-hero.apply-hero { padding: 150px 0 70px; }
+.apply-hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
+
+.apply-section {
+  padding: 0 0 80px;
+  background: var(--bg-alt);
+}
+.apply-wrap {
+  margin-top: -40px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.trust-strip {
+  margin-top: 40px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.trust-item { display: flex; gap: 14px; align-items: flex-start; }
+.trust-item-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-item-icon svg { width: 20px; height: 20px; }
+.trust-item h5 {
+  font-family: var(--display); font-size: 0.95rem;
+  margin-bottom: 4px; color: var(--ink); font-weight: 700;
+}
+.trust-item p { font-size: 0.85rem; color: var(--body); line-height: 1.55; }
+
+.help-block {
+  margin-top: 30px; text-align: center;
+  padding: 28px;
+  background: white;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--body); font-size: 0.95rem;
+}
+.help-block strong { color: var(--ink); }
+.help-block a {
+  color: var(--teal-dark); font-weight: 600;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.help-block a:hover { border-color: var(--teal); }
+
+/* ============================================================
+   APPLICATION FORM — scoped under .apply-form-wrap
+   All form-specific CSS lives here, isolated from site styles.
+   ============================================================ */
+.apply-form-wrap {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  color: #2D2D2D;
+  font-size: 16px;
+}
+.apply-form-wrap * { box-sizing: border-box; }
+.apply-form-wrap .form-container { max-width: 100%; margin: 0; background: transparent; }
+.apply-form-wrap .form-header { text-align: center; padding: 48px 40px 36px; }
+.apply-form-wrap .form-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem; color: #2D2D2D;
+  margin-bottom: 10px; font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.apply-form-wrap .form-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem; color: var(--teal);
+  margin-bottom: 18px; font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+.apply-form-wrap .form-header p {
+  color: var(--body); font-size: 1rem; line-height: 1.65;
+  max-width: 640px; margin: 0 auto;
+}
+.apply-form-wrap .progress-tabs {
+  display: flex;
+  border-bottom: 1px solid #e6ebee;
+  padding: 0 40px;
+  overflow-x: auto;
+}
+.apply-form-wrap .tab {
+  flex: 1; padding: 18px 16px;
+  text-align: center; font-weight: 500;
+  color: #8896ab;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin-bottom: -1px;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.apply-form-wrap .tab.active { color: var(--teal-dark); border-bottom-color: var(--teal); }
+.apply-form-wrap .tab.completed { color: var(--teal-dark); opacity: 0.65; }
+.apply-form-wrap .form-content { padding: 44px 40px; }
+.apply-form-wrap .form-step { display: none; }
+.apply-form-wrap .form-step.active { display: block; }
+.apply-form-wrap .section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem; color: #2D2D2D;
+  margin-bottom: 26px; font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.apply-form-wrap .form-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 22px; margin-bottom: 22px;
+}
+.apply-form-wrap .form-group { margin-bottom: 0; }
+.apply-form-wrap .form-group.full-width { grid-column: 1 / -1; }
+.apply-form-wrap .form-group label {
+  display: block; margin-bottom: 8px;
+  color: #2D2D2D; font-size: 0.9rem; font-weight: 600;
+}
+.apply-form-wrap .form-group label.required::after {
+  content: ' *'; color: #dc3545;
+}
+.apply-form-wrap .form-group input[type="text"],
+.apply-form-wrap .form-group input[type="email"],
+.apply-form-wrap .form-group input[type="tel"],
+.apply-form-wrap .form-group input[type="date"],
+.apply-form-wrap .form-group input[type="number"],
+.apply-form-wrap .form-group select {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid #ced4da; border-radius: 8px;
+  font-size: 0.98rem; background: white; color: #2D2D2D;
+  font-family: 'Montserrat', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+.apply-form-wrap .form-group input[type="number"]::-webkit-inner-spin-button,
+.apply-form-wrap .form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; margin: 0;
+}
+.apply-form-wrap .form-group input:focus,
+.apply-form-wrap .form-group select:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(18, 148, 138, 0.12);
+}
+.apply-form-wrap .form-group input::placeholder { color: #adb5bd; }
+.apply-form-wrap .checkbox-group {
+  display: flex; align-items: flex-start; margin-top: 10px;
+  padding: 18px 22px; background: #fff;
+  border-radius: 8px; border: 1.5px solid #e9ecef;
+}
+.apply-form-wrap .checkbox-group input[type="checkbox"] {
+  margin-right: 12px; margin-top: 2px;
+  width: 20px; height: 20px;
+  cursor: pointer; accent-color: var(--teal);
+  flex-shrink: 0;
+}
+.apply-form-wrap .checkbox-group label {
+  font-size: 0.95rem; color: #2D2D2D;
+  line-height: 1.55; cursor: pointer; margin: 0; font-weight: 500;
+}
+.apply-form-wrap .checkbox-group.simple { padding: 0; background: transparent; border: none; }
+.apply-form-wrap .checkbox-group.simple label {
+  font-size: 0.88rem; font-weight: 400;
+  color: var(--body);
+}
+.apply-form-wrap .checkbox-group.simple input[type="checkbox"] { width: 18px; height: 18px; }
+.apply-form-wrap .consent-text {
+  background: var(--bg-alt); padding: 24px 28px;
+  border-radius: 10px; margin: 28px 0 20px;
+  font-size: 0.88rem; color: var(--body);
+  line-height: 1.65; border: 1px solid var(--line);
+  max-height: 220px; overflow-y: auto;
+}
+.apply-form-wrap .consent-text p { margin-bottom: 12px; }
+.apply-form-wrap .consent-text p:last-child { margin-bottom: 0; }
+.apply-form-wrap .consent-text a { color: var(--teal-dark); text-decoration: underline; }
+.apply-form-wrap .toggle-group { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+.apply-form-wrap .toggle-switch {
+  position: relative; display: inline-block;
+  width: 72px; height: 36px;
+}
+.apply-form-wrap .toggle-switch input { opacity: 0; width: 0; height: 0; }
+.apply-form-wrap .toggle-slider {
+  position: absolute; cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #dc3545; transition: 0.3s;
+  border-radius: 24px;
+}
+.apply-form-wrap .toggle-slider::after {
+  content: 'No'; position: absolute;
+  color: white; font-size: 0.78rem; font-weight: 600;
+  left: 12px; top: 50%; transform: translateY(-50%);
+  transition: 0.3s;
+}
+.apply-form-wrap .toggle-slider:before {
+  position: absolute; content: "";
+  height: 28px; width: 28px;
+  left: 4px; bottom: 4px;
+  background-color: white; transition: 0.3s;
+  border-radius: 50%; z-index: 1;
+}
+.apply-form-wrap .toggle-switch input:checked + .toggle-slider { background-color: var(--teal); }
+.apply-form-wrap .toggle-switch input:checked + .toggle-slider::after {
+  content: 'Yes'; left: auto; right: 12px;
+}
+.apply-form-wrap .toggle-switch input:checked + .toggle-slider:before { transform: translateX(36px); }
+.apply-form-wrap .form-group.error input,
+.apply-form-wrap .form-group.error select {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12) !important;
+  animation: fShake 0.3s;
+}
+.apply-form-wrap .form-group.error label { color: #dc3545; }
+.apply-form-wrap .checkbox-group.error {
+  border-color: #dc3545 !important; background: #fff5f5 !important;
+  animation: fShake 0.3s;
+}
+@keyframes fShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.apply-form-wrap .upload-area {
+  border: 2px dashed #ced4da; border-radius: 10px;
+  padding: 48px 30px; text-align: center;
+  cursor: pointer; transition: all 0.3s ease;
+  background: #fafbfc;
+}
+.apply-form-wrap .upload-area:hover {
+  border-color: var(--teal); background: var(--teal-soft);
+}
+.apply-form-wrap .upload-area input[type="file"] { display: none; }
+.apply-form-wrap .upload-text { color: #2D2D2D; font-size: 0.98rem; }
+.apply-form-wrap .upload-text a {
+  color: var(--teal-dark); text-decoration: none; font-weight: 600;
+}
+.apply-form-wrap .upload-text a:hover { text-decoration: underline; }
+.apply-form-wrap .upload-note {
+  color: var(--body); font-size: 0.85rem;
+  margin-top: 18px; text-align: center;
+}
+.apply-form-wrap .upload-instruction {
+  background: rgba(245, 166, 35, 0.1); padding: 14px 20px;
+  border-radius: 8px; margin-top: 22px;
+  font-weight: 600; color: var(--amber-dark);
+  font-size: 0.92rem; text-align: center;
+  border-left: 3px solid var(--amber);
+}
+.apply-form-wrap .signature-pad {
+  border: 2px solid #ced4da; border-radius: 10px;
+  background: #fafbfc; cursor: crosshair;
+  display: block; width: 100%; height: 200px;
+  touch-action: none;
+}
+.apply-form-wrap .signature-instruction {
+  color: var(--body); font-size: 0.92rem;
+  margin-bottom: 14px;
+}
+
+/* Form buttons — using .fbtn to avoid collision with site's .btn */
+.apply-form-wrap .button-group {
+  display: flex; gap: 14px; margin-top: 40px;
+  padding-top: 32px; border-top: 1px solid var(--line);
+}
+.apply-form-wrap .fbtn {
+  padding: 14px 32px; border: none; border-radius: 999px;
+  font-size: 0.98rem; font-weight: 600; cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.apply-form-wrap .fbtn-primary {
+  background: var(--teal); color: white;
+  margin-left: auto;
+  box-shadow: 0 6px 20px rgba(18, 148, 138, 0.3);
+}
+.apply-form-wrap .fbtn-primary:hover {
+  background: var(--teal-dark); transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(18, 148, 138, 0.45);
+}
+.apply-form-wrap .fbtn-secondary {
+  background: #6c757d; color: white;
+}
+.apply-form-wrap .fbtn-secondary:hover { background: #5a6268; }
+.apply-form-wrap .fbtn-save {
+  background: #e9ecef; color: #2D2D2D;
+}
+.apply-form-wrap .fbtn-save:hover { background: #dee2e6; }
+.apply-form-wrap .file-list { margin-top: 16px; }
+.apply-form-wrap .file-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; background: var(--bg-alt);
+  border-radius: 8px; margin-bottom: 8px;
+  border: 1px solid var(--line);
+}
+.apply-form-wrap .file-item-name { color: #2D2D2D; font-size: 0.92rem; }
+.apply-form-wrap .file-item-remove {
+  color: #dc3545; cursor: pointer;
+  font-size: 0.85rem; font-weight: 600;
+}
+.apply-form-wrap .file-item-remove:hover { text-decoration: underline; }
+.apply-form-wrap .conditional-section { display: none; margin-top: 18px; }
+.apply-form-wrap .conditional-section.show { display: block; }
+
+@media (max-width: 768px) {
+  .apply-form-wrap .form-header { padding: 30px 20px 22px; }
+  .apply-form-wrap .form-header h1 { font-size: 1.5rem; }
+  .apply-form-wrap .form-header h2 { font-size: 1.05rem; }
+  .apply-form-wrap .progress-tabs { padding: 0 14px; }
+  .apply-form-wrap .tab { font-size: 0.8rem; padding: 14px 10px; }
+  .apply-form-wrap .form-content { padding: 28px 20px; }
+  .apply-form-wrap .form-row { grid-template-columns: 1fr; gap: 18px; }
+  .apply-form-wrap .section-title { font-size: 1.15rem; }
+  .apply-form-wrap .button-group { flex-direction: column-reverse; gap: 10px; }
+  .apply-form-wrap .fbtn { width: 100%; }
+  .apply-form-wrap .fbtn-primary { margin-left: 0; }
+  .apply-wrap { margin-top: -24px; border-radius: var(--radius); }
+  .trust-strip { grid-template-columns: 1fr; gap: 22px; padding: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+        <div class="logo-text">
+          <span class="name">Guidance Funding</span>
+          <span class="tag">Business Capital &amp; Solutions</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-drop">
+          <span>Financing</span>
+          <div class="drop">
+            <h4 class="drop-title">Premium Business Financing</h4>
+            <div class="drop-col">
+              <a href="/bridge/">Bridge Loan</a>
+              <a href="/loc/">Line of Credit</a>
+              <a href="/term/">Term Loan</a>
+              <a href="/equipment/">Equipment Financing</a>
+            </div>
+            <div class="drop-col">
+              <a href="/mortgage/">Mortgage Financing</a>
+              <a href="/po/">P.O. Financing</a>
+              <a href="/sba/">SBA Loan</a>
+              <a href="/factoring/">Factoring</a>
+            </div>
+          </div>
+        </li>
+        <li class="has-drop">
+          <span>Solutions</span>
+          <div class="drop">
+            <h4 class="drop-title">Small Business Solutions</h4>
+            <div class="drop-col">
+              <a href="/credit-services/">Credit Services</a>
+              <a href="/ccp/">Credit Card Processing</a>
+              <a href="/bookkeeping/">Bookkeeping</a>
+            </div>
+            <div class="drop-col">
+              <a href="/seo/">SEO Services</a>
+              <a href="/payroll/">Payroll &amp; HR</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="/#calculator">Calculator</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="tel:2135227765" class="phone-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="/apply/" class="btn btn-primary">Apply Now <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+<aside class="mobile-nav" id="mobileNav">
+  <a href="/">Home</a>
+  <div class="group">
+    <h4>Financing</h4>
+    <a href="/bridge/">Bridge Loan</a>
+    <a href="/loc/">Line of Credit</a>
+    <a href="/term/">Term Loan</a>
+    <a href="/equipment/">Equipment Financing</a>
+    <a href="/mortgage/">Mortgage Financing</a>
+    <a href="/po/">P.O. Financing</a>
+    <a href="/sba/">SBA Loan</a>
+    <a href="/factoring/">Factoring</a>
+  </div>
+  <div class="group">
+    <h4>Solutions</h4>
+    <a href="/credit-services/">Credit Services</a>
+    <a href="/ccp/">Credit Card Processing</a>
+    <a href="/bookkeeping/">Bookkeeping</a>
+    <a href="/seo/">SEO Services</a>
+    <a href="/payroll/">Payroll &amp; HR</a>
+  </div>
+  <a href="/#calculator">Calculator</a>
+  <a href="/#faq">FAQ</a>
+  <a href="/contact/">Contact</a>
+  <div class="mobile-cta">
+    <a href="tel:2135227765" class="btn btn-ghost" style="width:100%; margin-bottom:10px;">(213) 522-7765</a>
+    <a href="/apply/" class="btn btn-primary" style="width:100%;">Apply Now</a>
+  </div>
+</aside>
+
+<!-- ========== HERO ========== -->
+<section class="page-hero apply-hero">
+  <div class="container">
+    <div class="crumbs">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span>Apply</span>
+    </div>
+    <div class="eyebrow eyebrow-light">Start your application</div>
+    <h1>4 steps to <span class="accent">funding</span>.</h1>
+    <p class="lede">Fill out the form below &mdash; it takes about 10 minutes. Once submitted, a specialist reviews your file and reaches out within one business day.</p>
+  </div>
+</section>
+
+<!-- ========== APPLICATION FORM (inlined) ========== -->
+<section class="apply-section">
+  <div class="container">
+    <div class="apply-wrap">
+      <div class="apply-form-wrap">
+        <div class="form-container">
+
+          <div class="form-header">
+            <h1>Information form</h1>
+            <h2 id="steps-count">4 steps to funding</h2>
+            <p>Thank you for placing your trust in us. Please take a few minutes to complete the form below. We'll process your request right away.</p>
+          </div>
+
+          <div class="progress-tabs">
+            <div class="tab active" data-step="1">Contact Information</div>
+            <div class="tab" data-step="2">Business Details</div>
+            <div class="tab" data-step="3">Basic Documents</div>
+            <div class="tab" data-step="4">Signature</div>
+          </div>
+
+          <form id="application-form">
+
+            <!-- Step 1: Contact Information -->
+            <div class="form-step active" id="step-1">
+              <div class="form-content">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">First name</label>
+                    <input type="text" name="firstName" placeholder="John" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Last name</label>
+                    <input type="text" name="lastName" placeholder="Doe" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Date of Birth</label>
+                    <input type="date" name="dateOfBirth" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">SSN/NIN</label>
+                    <input type="text" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Email</label>
+                    <input type="email" name="email" placeholder="email@business.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Mobile Phone</label>
+                    <input type="tel" name="mobilePhone" placeholder="(XXX) XXX-XXXX" required>
+                  </div>
+                </div>
+                <div class="form-group full-width">
+                  <label class="required">Legal Company Name</label>
+                  <input type="text" name="companyName" placeholder="Smith Roofing" required>
+                </div>
+
+                <div class="consent-text">
+                  <p><strong>Consent to Communications:</strong></p>
+                  <p>By providing your contact information and signing below, you authorize Guidance Funding (GF) and its representatives, successors, assigns, and designees to communicate with you via phone calls, text messages, and emails, including automated technology and pre-recorded messages, for informational, marketing, or transactional purposes. Standard message and data rates may apply. Message frequency may vary. You may opt-out at any time by replying "STOP" to text messages, unsubscribing from emails, or contacting us directly. You further authorize GF and its designees to obtain consumer or personal, business and investigative reports about you, including credit card processor statements and bank statements, from one or more consumer reporting agencies (including TransUnion, Experian, Equifax, and Identity IQ), banks, creditors, government agencies, and other third parties (collectively, the "Recipients"). GF may transmit this application form, along with any information obtained in connection with it, to any or all Recipients for purposes related to commercial loans or purchases of future receivables (collectively, "Transactions"). You also consent to the release, by any creditor or financial institution, of any information relating to you, to GF and each of the Recipients. GF is authorized to communicate with the Recipients on your behalf and represent you in matters related to the Transactions.</p>
+                </div>
+
+                <div class="checkbox-group">
+                  <input type="checkbox" id="consentAgreement" name="consentAgreement" required>
+                  <label for="consentAgreement">I agree to the Consent to Communications stated above <span style="color:#dc3545;">*</span></label>
+                </div>
+
+                <div class="button-group">
+                  <button type="button" class="fbtn fbtn-primary" onclick="validateAndProceed()">Next
+                    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Business Details -->
+            <div class="form-step" id="step-2">
+              <div class="form-content">
+                <h3 class="section-title">Business Details</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Business Start Date</label>
+                    <input type="date" name="businessStartDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Industry</label>
+                    <select name="industry">
+                      <option value="">Select industry</option>
+                      <option value="retail">Retail</option>
+                      <option value="restaurant">Restaurant</option>
+                      <option value="healthcare">Healthcare</option>
+                      <option value="construction">Construction</option>
+                      <option value="professional-services">Professional Services</option>
+                      <option value="manufacturing">Manufacturing</option>
+                      <option value="technology">Technology</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">State of Incorporation</label>
+                    <select name="stateOfIncorporation" class="state-select" required>
+                      <option value="">Select state</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Tax ID / Company Number</label>
+                    <input type="text" name="taxId" placeholder="XX-XXXXXXX" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Company Website</label>
+                    <input type="text" name="companyWebsite" placeholder="Enter URL" id="websiteInput">
+                    <div class="checkbox-group simple" style="margin-top:10px;">
+                      <input type="checkbox" id="noWebsite" onchange="toggleWebsite(this)">
+                      <label for="noWebsite">This business does not have a website</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Business Phone</label>
+                    <input type="tel" name="businessPhone" placeholder="(XXX) XXX-XXXX" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">FICO Score</label>
+                    <input type="text" name="ficoScore" placeholder="250-900" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Ownership %</label>
+                    <input type="text" name="ownership" placeholder="%" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Number of Employees</label>
+                    <input type="number" name="employees" placeholder="100" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Entity Type</label>
+                    <select name="entityType" required>
+                      <option value="">Select entity type</option>
+                      <option value="c-corp">C Corporation (C Corp)</option>
+                      <option value="gp">General Partnership (GP)</option>
+                      <option value="llc">Limited Liability Company (LLC)</option>
+                      <option value="lllp">Limited Liability Limited Partnership (LLLP)</option>
+                      <option value="llp">Limited Liability Partnership (LLP)</option>
+                      <option value="lp">Limited Partnership (LP)</option>
+                      <option value="pc">Professional Corporation (PC)</option>
+                      <option value="pllc">Professional Limited Liability Company (PLLC)</option>
+                      <option value="s-corp">S Corporation (S Corp)</option>
+                      <option value="sole">Sole Proprietorship</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Amount Requested</label>
+                    <input type="text" name="amountRequested" placeholder="Enter an amount" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Do you process credit cards?</label>
+                    <div class="toggle-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox" name="creditCards" onchange="updateToggleValue(this)">
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required">Do you own multiple businesses?</label>
+                    <div class="toggle-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox" name="multipleBusinesses" onchange="updateToggleValue(this)">
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="required">Is your business home based?</label>
+                    <div class="toggle-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox" name="homeBased" id="homeBasedToggle" checked onchange="toggleHomeBased(this)">
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Combined address (home based = yes) -->
+                <div id="combinedAddressSection">
+                  <h3 class="section-title" style="margin-top:32px;">Home/Business Address</h3>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Address Line 1</label>
+                      <input type="text" name="address1" placeholder="42 Railroad st." id="combinedAddress1" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Address Line 2</label>
+                      <input type="text" name="address2" placeholder="Apt. 4" id="combinedAddress2">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">City</label>
+                      <input type="text" name="city" placeholder="New York" id="combinedCity" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="required">State</label>
+                      <select name="state" id="combinedState" class="state-select" required>
+                        <option value="">Select state</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Zip</label>
+                      <input type="text" name="zip" id="combinedZip" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="required">I own home property</label>
+                      <div class="toggle-group">
+                        <label class="toggle-switch">
+                          <input type="checkbox" name="ownProperty" id="ownPropertyToggle" onchange="toggleOwnProperty(this)">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="homePropertyFields" class="conditional-section">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="required">Home Property Value ($)</label>
+                        <input type="text" name="homePropertyValue" placeholder="$0">
+                      </div>
+                      <div class="form-group">
+                        <label class="required">Home Property Equity ($)</label>
+                        <input type="text" name="homePropertyEquity" placeholder="$0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Separate business + home addresses (home based = no) -->
+                <div id="separateAddresses" class="conditional-section">
+                  <h3 class="section-title" style="margin-top:32px;">Business Address</h3>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Business Address Line 1</label>
+                      <input type="text" name="businessAddress1" placeholder="42 Railroad st." id="businessAddress1">
+                    </div>
+                    <div class="form-group">
+                      <label>Business Address Line 2</label>
+                      <input type="text" name="businessAddress2" placeholder="Apt. 4" id="businessAddress2">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Business City</label>
+                      <input type="text" name="businessCity" placeholder="New York" id="businessCity">
+                    </div>
+                    <div class="form-group">
+                      <label class="required">Business State</label>
+                      <select name="businessState" id="businessState" class="state-select">
+                        <option value="">Select state</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Business Zip</label>
+                      <input type="text" name="businessZip" id="businessZip">
+                    </div>
+                    <div class="form-group">
+                      <label class="required">I own business property</label>
+                      <div class="toggle-group">
+                        <label class="toggle-switch">
+                          <input type="checkbox" name="ownBusinessProperty" id="ownBusinessPropertyToggle" onchange="toggleOwnBusinessProperty(this)">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="businessPropertyFields" class="conditional-section">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="required">Business Property Value ($)</label>
+                        <input type="text" name="businessPropertyValue" placeholder="$0">
+                      </div>
+                      <div class="form-group">
+                        <label class="required">Business Property Equity ($)</label>
+                        <input type="text" name="businessPropertyEquity" placeholder="$0">
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 class="section-title" style="margin-top:32px;">Home Address</h3>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Home Address Line 1</label>
+                      <input type="text" name="homeAddress1" placeholder="42 Railroad st." id="homeAddress1">
+                    </div>
+                    <div class="form-group">
+                      <label>Home Address Line 2</label>
+                      <input type="text" name="homeAddress2" placeholder="Apt. 4" id="homeAddress2">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Home City</label>
+                      <input type="text" name="homeCity" placeholder="New York" id="homeCity">
+                    </div>
+                    <div class="form-group">
+                      <label class="required">Home State</label>
+                      <select name="homeState" id="homeState" class="state-select">
+                        <option value="">Select state</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="required">Home Zip</label>
+                      <input type="text" name="homeZip" id="homeZip">
+                    </div>
+                    <div class="form-group">
+                      <label class="required">I own home property</label>
+                      <div class="toggle-group">
+                        <label class="toggle-switch">
+                          <input type="checkbox" name="ownHomeProperty" id="ownHomePropertyToggle" onchange="toggleOwnHomeProperty(this)">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="homePropertyFieldsSeparate" class="conditional-section">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="required">Home Property Value ($)</label>
+                        <input type="text" name="homePropertyValueSeparate" placeholder="$0">
+                      </div>
+                      <div class="form-group">
+                        <label class="required">Home Property Equity ($)</label>
+                        <input type="text" name="homePropertyEquitySeparate" placeholder="$0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-group">
+                  <button type="button" class="fbtn fbtn-secondary" onclick="previousStep(1)">Previous</button>
+                  <button type="button" class="fbtn fbtn-save">Save for later</button>
+                  <button type="button" class="fbtn fbtn-primary" onclick="if(validateStep2()) nextStep(3)">Next
+                    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Basic Documents -->
+            <div class="form-step" id="step-3">
+              <div class="form-content">
+                <h3 class="section-title">Basic Documents</h3>
+                <div class="form-group">
+                  <label>Bank Statement(s)</label>
+                  <div class="upload-area" onclick="document.getElementById('bankStatements').click()">
+                    <input type="file" id="bankStatements" name="bankStatements" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" onchange="handleFileUpload(this, 'bank-files')">
+                    <div class="upload-text">Drop a file or <a href="#">browse</a></div>
+                  </div>
+                  <div id="bank-files" class="file-list"></div>
+                </div>
+                <div class="form-group" style="margin-top:24px;">
+                  <label>Additional Document(s)</label>
+                  <div class="upload-area" onclick="document.getElementById('additionalDocs').click()">
+                    <input type="file" id="additionalDocs" name="additionalDocs" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" onchange="handleFileUpload(this, 'additional-files')">
+                    <div class="upload-text">Drop a file or <a href="#">browse</a></div>
+                  </div>
+                  <div id="additional-files" class="file-list"></div>
+                </div>
+                <div class="upload-note">Supported formats: PDF, JPG, JPEG, PNG, TIFF (less than 10 MB)</div>
+                <div class="upload-instruction">Please include the last 4 months of business bank statements</div>
+
+                <div class="button-group">
+                  <button type="button" class="fbtn fbtn-secondary" onclick="previousStep(2)">Previous</button>
+                  <button type="button" class="fbtn fbtn-save">Save for later</button>
+                  <button type="button" class="fbtn fbtn-primary" onclick="if(validateStep3()) nextStep(4)">Next
+                    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Signature -->
+            <div class="form-step" id="step-4">
+              <div class="form-content">
+                <h3 class="section-title">Confirm Application</h3>
+                <div class="consent-text">
+                  <p>By signing below, each of the above listed business and business owner/officer (individually and collectively, "you") authorize Guidance Funding ("GF") and each of its representatives, successors, assigns and designees that may be involved with or acquire commercial loans or purchases of future receivables including, without limitation, the application therefor (collectively, "Transactions") to obtain consumer or personal, business and investigative reports and other information about you, including credit card processor statements and bank statements, from one or more consumer reporting agencies, such as TransUnion, Experian and Equifax, Identity IQ and from other credit bureaus, banks, creditors, government agencies and other third parties (the "Recipients"). You also authorize GF to transmit this application form, along with any of the foregoing information obtained in connection with this application, to any or all of the Recipients for the foregoing purposes. You also consent to the release, by any creditor or financial institution, of any information relating to any of you, to GF and to each of the Recipients. You also authorize GF and each of its Recipients to contact you via text message, automated call or email message at the contact information listed above.</p>
+                </div>
+
+                <div class="form-group" style="margin-top:24px;">
+                  <label class="required">Owner's Signature</label>
+                  <div class="signature-instruction">Use your mouse or finger to sign below</div>
+                  <canvas id="signaturePad" class="signature-pad"></canvas>
+                  <button type="button" class="fbtn fbtn-save" style="margin-top:10px; display:inline-block; width:auto;" onclick="clearSignature()">Clear</button>
+                </div>
+
+                <div class="checkbox-group simple" style="margin-top:24px;">
+                  <input type="checkbox" id="specialOffers" name="specialOffers">
+                  <label for="specialOffers">Opt-in to receive special offers</label>
+                </div>
+
+                <div class="button-group">
+                  <button type="button" class="fbtn fbtn-secondary" onclick="previousStep(3)">Previous</button>
+                  <button type="button" class="fbtn fbtn-save">Save for later</button>
+                  <button type="submit" class="fbtn fbtn-primary">Submit
+                    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <div>
+          <h5>No obligation</h5>
+          <p>Applying is free and doesn't commit you to anything. Review the offer before accepting.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h5>Your data is secure</h5>
+          <p>All information is encrypted and used only for underwriting your funding request.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <h5>Fast response</h5>
+          <p>A specialist reviews your file and reaches out within one business day with next steps.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-block">
+      <strong>Need a hand with the form?</strong> Call us at <a href="tel:2135227765">(213) 522-7765</a> or email <a href="mailto:admin@guidancefunding.com">admin@guidancefunding.com</a> and we'll walk you through it.
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="/" class="logo">
+          <div class="logo-mark" aria-label="Guidance Funding"><svg viewBox="0 0 1568 3000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M784,2783.39l257.18-146.24,87.41-632.03c57.15-23.53,83.18-34.08,195.99-109.64,89.77-60.13,148.6-151.74,148.6-151.74,0,0-155.46-7.61-279.03,44.54-129.43,54.63-141.2,137.84-139.52,186.58l-94.13,554.71-176.5,107.58-176.5-107.58-94.13-554.71c1.68-48.75-10.09-131.95-139.52-186.58-123.57-52.16-279.03-44.54-279.03-44.54,0,0,58.83,91.61,148.6,151.74,112.81,75.57,138.84,86.11,195.99,109.64l87.41,632.03,257.18,146.24h0Z"/><path d="M776.75,1740.23c41.98-13.6,241.99-211.95,289.65-330.16,144.88-359.4-104.22-521.09-104.22-521.09,0,0,159.67,426.02-87.41,457.21-37.14,4.69-163.24-27.25-110.22-275.67,41.77-195.73,111.38-256.15,108.74-421.62-4-250.82-287.64-432.29-287.64-432.29,0,0,168.39,156.22,161.37,373.17-6.55,202.47-271.97,372.85-291.93,643.03-17.1,231.46,321.66,507.43,321.66,507.43h0Z"/></svg></div>
+          <div class="logo-text">
+            <span class="name">Guidance Funding</span>
+            <span class="tag">Business Capital &amp; Solutions</span>
+          </div>
+        </a>
+        <p>Fast, customized financing built to support your business at every step. Call us today for a free, no-strings-attached consultation.</p>
+        <a href="tel:2135227765" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (213) 522-7765
+        </a>
+        <a href="mailto:admin@guidancefunding.com" class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          admin@guidancefunding.com
+        </a>
+        <span class="footer-contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Beverly Hills, CA
+        </span>
+      </div>
+      <div class="footer-col">
+        <h5>Financing</h5>
+        <ul>
+          <li><a href="/bridge/">Bridge Loan</a></li>
+          <li><a href="/loc/">Line of Credit</a></li>
+          <li><a href="/term/">Term Loan</a></li>
+          <li><a href="/equipment/">Equipment Financing</a></li>
+          <li><a href="/sba/">SBA Loan</a></li>
+          <li><a href="/factoring/">Factoring</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="/credit-services/">Credit Services</a></li>
+          <li><a href="/ccp/">Credit Card Processing</a></li>
+          <li><a href="/bookkeeping/">Bookkeeping</a></li>
+          <li><a href="/seo/">SEO Services</a></li>
+          <li><a href="/payroll/">Payroll &amp; HR</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/apply/">Apply Now</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Guidance Funding © 2026 — All rights reserved</div>
+      <div>California Lenders License #60DBO 67237</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// SITE JS — nav scroll, mobile toggle, reveal (shared with other pages)
+// ============================================================
+const navWrap = document.getElementById('navWrap');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) navWrap.classList.add('scrolled');
+  else navWrap.classList.remove('scrolled');
+});
+const navToggle = document.getElementById('navToggle');
+const mobileNav = document.getElementById('mobileNav');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+});
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    mobileNav.classList.remove('open');
+  });
+});
+
+// ============================================================
+// STATE DROPDOWNS — populate all .state-select elements once
+// ============================================================
+const US_STATES = [
+  ['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],
+  ['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['FL','Florida'],['GA','Georgia'],
+  ['HI','Hawaii'],['ID','Idaho'],['IL','Illinois'],['IN','Indiana'],['IA','Iowa'],
+  ['KS','Kansas'],['KY','Kentucky'],['LA','Louisiana'],['ME','Maine'],['MD','Maryland'],
+  ['MA','Massachusetts'],['MI','Michigan'],['MN','Minnesota'],['MS','Mississippi'],['MO','Missouri'],
+  ['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],['NH','New Hampshire'],['NJ','New Jersey'],
+  ['NM','New Mexico'],['NY','New York'],['NC','North Carolina'],['ND','North Dakota'],['OH','Ohio'],
+  ['OK','Oklahoma'],['OR','Oregon'],['PA','Pennsylvania'],['RI','Rhode Island'],['SC','South Carolina'],
+  ['SD','South Dakota'],['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],
+  ['VA','Virginia'],['WA','Washington'],['WV','West Virginia'],['WI','Wisconsin'],['WY','Wyoming']
+];
+document.querySelectorAll('.state-select').forEach(sel => {
+  US_STATES.forEach(([code, name]) => {
+    const opt = document.createElement('option');
+    opt.value = code;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+});
+
+// ============================================================
+// FORM LOGIC
+// ============================================================
+let currentStep = 1;
+let isDrawing = false;
+
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+function clearErrors() {
+  $$('.apply-form-wrap .form-group.error, .apply-form-wrap .checkbox-group.error').forEach(el => el.classList.remove('error'));
+}
+function scrollToFirstError() {
+  const el = $('.apply-form-wrap .form-group.error, .apply-form-wrap .checkbox-group.error');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function validateStep1() {
+  clearErrors();
+  const errors = [];
+  const fields = {
+    firstName: 'First Name', lastName: 'Last Name', dateOfBirth: 'Date of Birth',
+    ssn: 'SSN/NIN', email: 'Email', mobilePhone: 'Mobile Phone', companyName: 'Legal Company Name'
+  };
+  Object.entries(fields).forEach(([name, label]) => {
+    const el = $(`input[name="${name}"]`);
+    if (!el.value.trim()) {
+      el.closest('.form-group').classList.add('error');
+      errors.push(label);
+    }
+  });
+  const email = $('input[name="email"]');
+  if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    email.closest('.form-group').classList.add('error');
+    errors.push('Valid Email');
+  }
+  const consent = $('#consentAgreement');
+  if (!consent.checked) {
+    consent.closest('.checkbox-group').classList.add('error');
+    errors.push('Consent Agreement');
+  }
+  if (errors.length) {
+    scrollToFirstError();
+    alert('Please complete the following:\n\n• ' + errors.join('\n• '));
+    return false;
+  }
+  return true;
+}
+
+function validateStep2() {
+  clearErrors();
+  const errors = [];
+  const required = [
+    ['input[name="businessStartDate"]', 'Business Start Date'],
+    ['select[name="industry"]', 'Industry'],
+    ['select[name="stateOfIncorporation"]', 'State of Incorporation'],
+    ['input[name="taxId"]', 'Tax ID'],
+    ['input[name="businessPhone"]', 'Business Phone'],
+    ['input[name="ficoScore"]', 'FICO Score'],
+    ['input[name="ownership"]', 'Ownership %'],
+    ['input[name="employees"]', 'Number of Employees'],
+    ['select[name="entityType"]', 'Entity Type'],
+    ['input[name="amountRequested"]', 'Amount Requested']
+  ];
+  required.forEach(([sel, label]) => {
+    const el = $(sel);
+    if (!el.value || !el.value.toString().trim()) {
+      el.closest('.form-group').classList.add('error');
+      errors.push(label);
+    }
+  });
+  const websiteInput = $('#websiteInput');
+  const noWebsite = $('#noWebsite').checked;
+  if (!websiteInput.value.trim() && !noWebsite) {
+    websiteInput.closest('.form-group').classList.add('error');
+    errors.push('Company Website');
+  }
+
+  const homeBased = $('#homeBasedToggle').checked;
+  if (homeBased) {
+    [['combinedAddress1','Address Line 1'],['combinedCity','City'],['combinedState','State'],['combinedZip','Zip Code']].forEach(([id,label]) => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.closest('.form-group').classList.add('error'); errors.push(label); }
+    });
+  } else {
+    [['businessAddress1','Business Address Line 1'],['businessCity','Business City'],['businessState','Business State'],['businessZip','Business Zip'],
+     ['homeAddress1','Home Address Line 1'],['homeCity','Home City'],['homeState','Home State'],['homeZip','Home Zip']].forEach(([id,label]) => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.closest('.form-group').classList.add('error'); errors.push(label); }
+    });
+  }
+  if (errors.length) {
+    scrollToFirstError();
+    alert('Please complete the following:\n\n• ' + errors.join('\n• '));
+    return false;
+  }
+  return true;
+}
+
+function validateStep3() {
+  const bank = $('#bankStatements');
+  if (!bank.files || bank.files.length === 0) {
+    const area = $('.apply-form-wrap .upload-area');
+    if (area) {
+      area.style.borderColor = '#dc3545';
+      area.style.background = '#fff5f5';
+      setTimeout(() => { area.style.borderColor = ''; area.style.background = ''; }, 3000);
+    }
+    alert('Please upload at least one bank statement (last 4 months preferred).');
+    return false;
+  }
+  return true;
+}
+
+function validateAndProceed() { if (validateStep1()) nextStep(2); }
+function updateToggleValue(cb) { cb.value = cb.checked ? 'Yes' : 'No'; }
+
+function toggleHomeBased(cb) {
+  cb.value = cb.checked ? 'Yes' : 'No';
+  $('#combinedAddressSection').style.display = cb.checked ? 'block' : 'none';
+  $('#separateAddresses').style.display = cb.checked ? 'none' : 'block';
+  if (!cb.checked) $('#separateAddresses').classList.add('show');
+}
+function toggleOwnProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; $('#homePropertyFields').classList.toggle('show', cb.checked); }
+function toggleOwnBusinessProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; $('#businessPropertyFields').classList.toggle('show', cb.checked); }
+function toggleOwnHomeProperty(cb) { cb.value = cb.checked ? 'Yes':'No'; $('#homePropertyFieldsSeparate').classList.toggle('show', cb.checked); }
+
+function toggleWebsite(cb) {
+  const input = $('#websiteInput');
+  if (cb.checked) { input.disabled = true; input.value = 'N/A'; input.style.opacity = '0.5'; }
+  else { input.disabled = false; input.value = ''; input.style.opacity = '1'; }
+}
+
+function handleFileUpload(input, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  Array.from(input.files).forEach(file => {
+    const item = document.createElement('div');
+    item.className = 'file-item';
+    item.innerHTML = `<span class="file-item-name">${file.name}</span><span class="file-item-remove" onclick="this.parentElement.remove()">Remove</span>`;
+    container.appendChild(item);
+  });
+}
+
+// Signature pad
+function initializeSignaturePad() {
+  const canvas = document.getElementById('signaturePad');
+  if (!canvas) return;
+  const parentWidth = canvas.parentElement?.offsetWidth || 800;
+  canvas.width = parentWidth;
+  canvas.height = 200;
+  const ctx = canvas.getContext('2d');
+  ctx.strokeStyle = '#000'; ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+  // Remove any previously-attached listeners by cloning
+  const fresh = canvas.cloneNode(true);
+  canvas.parentNode.replaceChild(fresh, canvas);
+  const c = document.getElementById('signaturePad');
+  c.addEventListener('mousedown', startDrawing);
+  c.addEventListener('mousemove', draw);
+  c.addEventListener('mouseup', stopDrawing);
+  c.addEventListener('mouseout', stopDrawing);
+  c.addEventListener('touchstart', handleTouch, { passive: false });
+  c.addEventListener('touchmove', handleTouch, { passive: false });
+  c.addEventListener('touchend', stopDrawing);
+}
+function startDrawing(e) {
+  isDrawing = true;
+  const canvas = document.getElementById('signaturePad');
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  ctx.strokeStyle = '#000'; ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+}
+function draw(e) {
+  if (!isDrawing) return;
+  const canvas = document.getElementById('signaturePad');
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+  ctx.stroke();
+}
+function stopDrawing() { isDrawing = false; }
+function handleTouch(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const type = e.type === 'touchstart' ? 'mousedown' : e.type === 'touchmove' ? 'mousemove' : 'mouseup';
+  e.target.dispatchEvent(new MouseEvent(type, { clientX: touch.clientX, clientY: touch.clientY }));
+}
+function clearSignature() {
+  const canvas = document.getElementById('signaturePad');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Step navigation
+function nextStep(step) {
+  document.getElementById(`step-${currentStep}`).classList.remove('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.add('completed');
+  currentStep = step;
+  document.getElementById(`step-${currentStep}`).classList.add('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.add('active');
+  updateStepsCounter();
+  if (currentStep === 4) setTimeout(initializeSignaturePad, 100);
+  window.scrollTo({ top: document.querySelector('.apply-wrap').offsetTop - 80, behavior: 'smooth' });
+}
+function previousStep(step) {
+  document.getElementById(`step-${currentStep}`).classList.remove('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+  currentStep = step;
+  document.getElementById(`step-${currentStep}`).classList.add('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.add('active');
+  $(`.tab[data-step="${currentStep}"]`).classList.remove('completed');
+  updateStepsCounter();
+  window.scrollTo({ top: document.querySelector('.apply-wrap').offsetTop - 80, behavior: 'smooth' });
+}
+function updateStepsCounter() {
+  if (currentStep === 4) {
+    $('#steps-count').textContent = 'Confirm Application';
+  } else {
+    const remaining = 5 - currentStep;
+    $('#steps-count').textContent = `${remaining} step${remaining !== 1 ? 's' : ''} to funding`;
+  }
+}
+
+// Tab click navigation (only go back, not forward)
+$$('.apply-form-wrap .tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    const target = parseInt(this.getAttribute('data-step'));
+    if (target < currentStep || this.classList.contains('completed')) {
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      $(`.tab[data-step="${currentStep}"]`).classList.remove('active');
+      currentStep = target;
+      document.getElementById(`step-${currentStep}`).classList.add('active');
+      this.classList.add('active');
+      updateStepsCounter();
+      if (currentStep === 4) setTimeout(initializeSignaturePad, 100);
+      window.scrollTo({ top: document.querySelector('.apply-wrap').offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+  $$('.apply-form-wrap .toggle-switch input[type="checkbox"]').forEach(t => t.value = t.checked ? 'Yes' : 'No');
+  $$('.apply-form-wrap input, .apply-form-wrap select').forEach(f => {
+    f.addEventListener('input', () => f.closest('.form-group')?.classList.remove('error'));
+    f.addEventListener('change', () => f.closest('.form-group')?.classList.remove('error'));
+  });
+  $$('.apply-form-wrap .checkbox-group input[type="checkbox"]').forEach(c => {
+    c.addEventListener('change', () => c.closest('.checkbox-group')?.classList.remove('error'));
+  });
+  initializeSignaturePad();
+});
+
+// Submit
+document.getElementById('application-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const canvas = document.getElementById('signaturePad');
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const hasSignature = imageData.data.some(ch => ch !== 0);
+  if (!hasSignature) { alert('Please provide your signature before submitting.'); return; }
+
+  const formData = new FormData(this);
+  formData.append('signature', canvas.toDataURL());
+  console.log('Form submitted:', Object.fromEntries(formData));
+  alert('Thank you! Your application has been submitted. A specialist will reach out within one business day.');
+  // To enable redirect to MyRM, uncomment the next line:
+  // window.location.href = 'https://apply.myrmapp.com/multi-step-apply/lisagl';
+});
+
+// Reveal animation
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+$$('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
